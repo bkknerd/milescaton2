@@ -10,8 +10,8 @@ backend:
 # Test the editor locally: `npm run cms` and `npm start` together, then open localhost:8080/admin/.
 local_backend: true
 
-site_url: https://milescaton2.netlify.app
-display_url: https://milescaton2.netlify.app
+site_url: https://milescaton-2.netlify.app
+display_url: https://milescaton-2.netlify.app
 logo_url: /assets/admin-logo.svg
 
 media_folder: "img/uploads"
