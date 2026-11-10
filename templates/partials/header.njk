@@ -2,8 +2,21 @@
   <a class="sig" href="/" aria-label="{{ site.name }}, home"{% if site.logo %} style="--sig:url('{{ site.logo }}')"{% endif %}></a>
   <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><i></i><i></i></button>
   <nav class="nav" id="nav" aria-label="Main">
+    <ul class="nav-l">
     {%- for item in site.nav %}
-    <a href="{{ item.url }}"{% if item.url | isCurrent(page.url) %} aria-current="page"{% endif %}>{{ item.label }}</a>
+      {%- set kids = item.children or [] %}
+      {%- set here = (item | navHere(page.url)) %}
+      {%- if kids.length %}
+      <li class="dd">
+        <button type="button" class="dd-b{% if here %} here{% endif %}" aria-expanded="false" aria-controls="dd-{{ loop.index }}">{{ item.label }}<span class="chev" aria-hidden="true"></span></button>
+        <ul class="dd-m" id="dd-{{ loop.index }}">
+          {%- for k in kids %}<li><a href="{{ k.url }}"{% if k.url | isCurrent(page.url) %} aria-current="page"{% endif %}>{{ k.label }}</a></li>{% endfor %}
+        </ul>
+      </li>
+      {%- else %}
+      <li><a href="{{ item.url }}"{% if here %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+      {%- endif %}
     {%- endfor %}
+    </ul>
   </nav>
 </header>

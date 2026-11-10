@@ -22,7 +22,7 @@ Fan site for Miles Caton. Black, lowercase, Helvetica, with his signature on a l
 | `/story/` | Career year by year, with the year pinned on the left |
 | `/sinners/` | Credits, premiere photos, the numbers, his five songs in the film |
 | `/music/` | Every single, stacked full-screen. Each one plays in the on-site player |
-| `/videos/` | Wall of TV screens. YouTube videos play on the site; others link out |
+| `/videos/` | Wall of TV screens. Each YouTube video has its own player in the screen (YouTube shows its cover image until you press play); others link out |
 | `/photos/` | Photo grid with a full-screen viewer (arrow keys and swipe) |
 | `/dates/` | Upcoming appearances, birthday countdown, past appearances |
 | `/honors/` | Win and nomination counts, every award |

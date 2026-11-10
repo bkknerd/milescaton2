@@ -74,7 +74,22 @@
     btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     document.body.style.overflow = open ? 'hidden' : '';
   });
-  addEventListener('keydown', e => { if (e.key === 'Escape' && nav && nav.classList.contains('open')) btn.click(); });
+  const dds = $$('.dd');
+  const closeDds = (except) => dds.forEach(d => { if (d !== except) { d.classList.remove('open'); $('.dd-b', d).setAttribute('aria-expanded', 'false'); } });
+  dds.forEach(d => {
+    const b = $('.dd-b', d);
+    b.addEventListener('click', () => { const open = !d.classList.contains('open'); closeDds(d); d.classList.toggle('open', open); b.setAttribute('aria-expanded', open); });
+    if (matchMedia('(hover:hover) and (min-width:901px)').matches) {
+      d.addEventListener('mouseenter', () => b.setAttribute('aria-expanded', 'true'));
+      d.addEventListener('mouseleave', () => { if (!d.classList.contains('open')) b.setAttribute('aria-expanded', 'false'); });
+    }
+  });
+  document.addEventListener('click', e => { if (!e.target.closest('.dd')) closeDds(); });
+  addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if (dds.some(d => d.classList.contains('open'))) { closeDds(); return; }
+    if (nav && nav.classList.contains('open')) btn.click();
+  });
 
   /* ---------- the tv on the homepage ---------- */
   const box = $('#static'), cv = $('#tv');

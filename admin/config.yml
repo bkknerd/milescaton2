@@ -37,7 +37,15 @@ collections:
             name: nav
             widget: list
             summary: "{{fields.label}} → {{fields.url}}"
-            fields: [ { label: "Label", name: label, widget: string }, { label: "Link", name: url, widget: string } ]
+            hint: "Add sub-links to turn an item into a dropdown."
+            fields:
+              - { label: "Label", name: label, widget: string }
+              - { label: "Link", name: url, widget: string }
+              - label: "Dropdown links (optional)"
+                name: children
+                widget: list
+                required: false
+                fields: [ { label: "Label", name: label, widget: string }, { label: "Link", name: url, widget: string } ]
           - label: "Listen links (homepage)"
             name: listen
             widget: list

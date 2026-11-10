@@ -50,6 +50,7 @@ function makeEnv(imgCalls) {
   f("chars", (s) => String(s || "").split(""));
   f("absUrl", (p, base) => { try { return new URL(p, base).href; } catch { return p; } });
   f("isCurrent", (url, pageUrl) => url !== "/" && !!pageUrl && pageUrl.startsWith(url));
+  f("navHere", (item, pageUrl) => [item.url, ...((item.children || []).map((c) => c.url))].some((u) => u && u !== "/" && !!pageUrl && pageUrl.startsWith(u)));
   f("year", () => new Date().getFullYear());
   f("pressDate", (it) => {
     if (it.display) return it.display;

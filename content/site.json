@@ -7,40 +7,56 @@
   "og_image": "/img/og.jpg",
   "nav": [
     {
-      "label": "story",
-      "url": "/story/"
-    },
-    {
       "label": "sinners",
-      "url": "/sinners/"
+      "url": "/sinners/",
+      "children": []
     },
     {
       "label": "music",
-      "url": "/music/"
-    },
-    {
-      "label": "videos",
-      "url": "/videos/"
+      "url": "/music/",
+      "children": [
+        {
+          "label": "singles",
+          "url": "/music/"
+        },
+        {
+          "label": "videos",
+          "url": "/videos/"
+        }
+      ]
     },
     {
       "label": "photos",
-      "url": "/photos/"
+      "url": "/photos/",
+      "children": []
     },
     {
       "label": "dates",
-      "url": "/dates/"
+      "url": "/dates/",
+      "children": []
     },
     {
-      "label": "honors",
-      "url": "/honors/"
-    },
-    {
-      "label": "press",
-      "url": "/press/"
+      "label": "about",
+      "url": "/story/",
+      "children": [
+        {
+          "label": "story",
+          "url": "/story/"
+        },
+        {
+          "label": "honors",
+          "url": "/honors/"
+        },
+        {
+          "label": "press",
+          "url": "/press/"
+        }
+      ]
     },
     {
       "label": "fans",
-      "url": "/fans/"
+      "url": "/fans/",
+      "children": []
     }
   ],
   "listen": [
