@@ -1,0 +1,75 @@
+{
+  "sub_left": "Music videos, live performances and TV",
+  "items": [
+    {
+      "title": "Lean On",
+      "kind": "music video · 2026",
+      "meta": "Official video, Columbia",
+      "youtube": "TPvGrWa3iWA",
+      "playlist": "",
+      "link": "",
+      "link_label": "",
+      "wide": true
+    },
+    {
+      "title": "Don’t Hate Me",
+      "kind": "music video · 2026",
+      "meta": "Directed by Geoff Sean Levy",
+      "youtube": "",
+      "playlist": "OLAK5uy_mP2euq2n00x--maPcehJLy7XJJtkOi7nY",
+      "link": "",
+      "link_label": "",
+      "wide": false
+    },
+    {
+      "title": "I Lied to You",
+      "kind": "live · 2026",
+      "meta": "98th Academy Awards, with Raphael Saadiq",
+      "youtube": "",
+      "playlist": "",
+      "link": "https://www.essence.com/awards-events/miles-caton-2026-oscars-performance/",
+      "link_label": "Read about it on Essence",
+      "wide": false
+    },
+    {
+      "title": "Tiny Desk",
+      "kind": "live · 2026",
+      "meta": "With Buddy Guy: “Travelin’” and “I Lied to You”",
+      "youtube": "",
+      "playlist": "",
+      "link": "https://www.npr.org/2026/02/27/g-s1-110938/buddy-guy-tiny-desk-concert",
+      "link_label": "Watch on NPR",
+      "wide": false
+    },
+    {
+      "title": "Somethin",
+      "kind": "live · 2025",
+      "meta": "Live at an open mic",
+      "youtube": "",
+      "playlist": "",
+      "link": "",
+      "link_label": "",
+      "wide": false
+    },
+    {
+      "title": "Somethin",
+      "kind": "visualizer · 2025",
+      "meta": "Official visualizer, independent single",
+      "youtube": "Ocx5VZtVFHI",
+      "playlist": "",
+      "link": "",
+      "link_label": "",
+      "wide": false
+    },
+    {
+      "title": "Never Give Up",
+      "kind": "tv · 2019",
+      "meta": "With Yolanda Adams on *The View*, MLK Day",
+      "youtube": "G2b6anX6XcM",
+      "playlist": "",
+      "link": "",
+      "link_label": "",
+      "wide": true
+    }
+  ]
+}

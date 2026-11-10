@@ -1,0 +1,355 @@
+# Decap CMS — edits the JSON files in /content. Every save is a commit; Netlify rebuilds in about a minute.
+# In text fields: *single asterisks* = italic, **double asterisks** = bold.
+
+backend:
+  name: github
+  repo: bkknerd/milescaton2
+  branch: main
+  # Sign-in goes through Netlify's GitHub OAuth (Site configuration → Access & security → OAuth → GitHub).
+
+# Test the editor locally: `npm run cms` and `npm start` together, then open localhost:8080/admin/.
+local_backend: true
+
+site_url: https://milescaton2.netlify.app
+display_url: https://milescaton2.netlify.app
+logo_url: /assets/admin-logo.svg
+
+media_folder: "img/uploads"
+public_folder: "/img/uploads"
+
+collections:
+
+  - name: settings
+    label: "Site settings"
+    editor: { preview: false }
+    files:
+      - name: site
+        label: "Site, menu, links and footer"
+        file: "content/site.json"
+        fields:
+          - { label: "Site name", name: name, widget: string }
+          - { label: "Signature logo", name: logo, widget: image, hint: "Transparent PNG or WebP. Shown in the header, on the homepage TV and at the bottom of the homepage." }
+          - { label: "Browser title (homepage)", name: title, widget: string }
+          - { label: "Search description", name: description, widget: text }
+          - { label: "Live site address", name: url, widget: string, hint: "e.g. https://milescaton.com — used for share links, the sitemap and robots.txt" }
+          - { label: "Share image (1200×630)", name: og_image, widget: image }
+          - label: "Menu"
+            name: nav
+            widget: list
+            summary: "{{fields.label}} → {{fields.url}}"
+            fields: [ { label: "Label", name: label, widget: string }, { label: "Link", name: url, widget: string } ]
+          - label: "Listen links (homepage)"
+            name: listen
+            widget: list
+            summary: "{{fields.label}}"
+            fields: [ { label: "Service", name: label, widget: string }, { label: "Small note", name: note, widget: string }, { label: "Link", name: url, widget: string } ]
+          - label: "Follow links (homepage)"
+            name: follow
+            widget: list
+            summary: "{{fields.label}}"
+            fields: [ { label: "Account", name: label, widget: string }, { label: "Handle or note", name: note, widget: string }, { label: "Link", name: url, widget: string } ]
+          - label: "Email sign-up"
+            name: signup
+            widget: object
+            hint: "Sign-ups arrive in Netlify → Forms → newsletter. Export them as CSV into your email tool."
+            fields:
+              - { label: "Show", name: enabled, widget: boolean }
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Note", name: note, widget: text }
+              - { label: "Button", name: button, widget: string }
+              - { label: "Thank-you message", name: thanks, widget: string }
+          - label: "Corrections form"
+            name: corrections
+            widget: object
+            hint: "Arrives in Netlify → Forms → correction."
+            fields:
+              - { label: "Show", name: enabled, widget: boolean }
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Note", name: note, widget: text }
+              - { label: "Thank-you message", name: thanks, widget: string }
+          - label: "Footer"
+            name: footer
+            widget: object
+            fields:
+              - { label: "Hashtag", name: hashtag, widget: string }
+              - { label: "Hashtag link", name: hashtag_url, widget: string }
+              - { label: "Disclaimer", name: disclaimer, widget: text }
+              - label: "Site credit (bottom right)"
+                name: credit
+                widget: object
+                fields: [ { label: "Text", name: label, widget: string }, { label: "Link", name: url, widget: string } ]
+
+  - name: pages
+    label: "Pages"
+    editor: { preview: false }
+    files:
+
+      - name: home
+        label: "Homepage"
+        file: "content/home.json"
+        fields:
+          - label: "TV hero"
+            name: hero
+            widget: object
+            fields:
+              - { label: "Photo under the static", name: photo, widget: image, hint: "Black-and-white works best. Face in the upper half." }
+              - { label: "Top-left label", name: tl, widget: string }
+              - { label: "Bottom-left label", name: bl, widget: string }
+              - { label: "Bottom-right link text", name: br_label, widget: string }
+              - { label: "Bottom-right link", name: br_url, widget: string }
+              - { label: "Top-right play button text", name: play_label, widget: string }
+              - { label: "Top-right play button: YouTube video ID", name: play_youtube, widget: string, required: false, hint: "The part after watch?v=" }
+              - { label: "Video title (shown in the player)", name: play_title, widget: string }
+          - label: "Latest release"
+            name: release
+            widget: object
+            fields:
+              - { label: "Small line above", name: kicker, widget: string }
+              - { label: "Title (big)", name: title, widget: string }
+              - label: "Facts"
+                name: facts
+                widget: list
+                fields: [ { label: "Label", name: label, widget: string }, { label: "Value", name: value, widget: string } ]
+              - { label: "YouTube video ID", name: youtube, widget: string, required: false }
+              - { label: "Article link text", name: announce_label, widget: string, required: false }
+              - { label: "Article link", name: announce_url, widget: string, required: false }
+          - label: "Bio"
+            name: bio
+            widget: object
+            fields:
+              - { label: "Text", name: text, widget: text }
+              - { label: "Photo", name: photo, widget: image, required: false }
+              - { label: "Photo description (alt text)", name: photo_alt, widget: string, required: false }
+          - label: "Photo strip"
+            name: strip
+            widget: object
+            fields:
+              - { label: "Label", name: label, widget: string }
+              - { label: "Link text", name: link_label, widget: string }
+              - label: "Photos"
+                name: photos
+                widget: list
+                fields: [ { label: "Photo", name: src, widget: image }, { label: "Description (alt text)", name: alt, widget: string } ]
+          - label: "City of Noise"
+            name: noise
+            widget: object
+            fields:
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Text", name: text, widget: text }
+              - { label: "Link text", name: link_label, widget: string }
+              - { label: "Link", name: link_url, widget: string }
+          - label: "Page list"
+            name: index
+            widget: list
+            summary: "{{fields.label}}"
+            fields: [ { label: "Label", name: label, widget: string }, { label: "Link", name: url, widget: string }, { label: "Description", name: text, widget: string } ]
+          - label: "Sign-off"
+            name: signoff
+            widget: object
+            fields:
+              - { label: "Text", name: text, widget: string }
+              - label: "Links"
+                name: links
+                widget: list
+                fields: [ { label: "Label", name: label, widget: string }, { label: "Link", name: url, widget: string } ]
+
+      - name: story
+        label: "Story"
+        file: "content/story.json"
+        fields:
+          - { label: "Line under heading (left)", name: sub_left, widget: string }
+          - { label: "Line under heading (right)", name: sub_right, widget: string }
+          - { label: "Starting year", name: start_year, widget: string }
+          - { label: "Starting note", name: start_note, widget: string }
+          - label: "Moments"
+            name: items
+            widget: list
+            summary: "{{fields.year}}: {{fields.title}}"
+            fields:
+              - { label: "Year (or Now)", name: year, widget: string }
+              - { label: "Age or season", name: when, widget: string }
+              - { label: "Title", name: title, widget: string }
+              - { label: "Text", name: text, widget: text }
+
+      - name: sinners
+        label: "Sinners"
+        file: "content/sinners.json"
+        fields:
+          - { label: "Film title", name: title, widget: string }
+          - { label: "Year", name: year, widget: string }
+          - label: "Credits"
+            name: credits
+            widget: list
+            fields: [ { label: "Label", name: label, widget: string }, { label: "Value", name: value, widget: string } ]
+          - { label: "Lead paragraph", name: lead, widget: text }
+          - label: "Photos"
+            name: photos
+            widget: list
+            fields: [ { label: "Photo", name: src, widget: image }, { label: "Description (alt text)", name: alt, widget: string }, { label: "Caption", name: caption, widget: string } ]
+          - label: "Numbers"
+            name: facts
+            widget: list
+            fields: [ { label: "Number", name: n, widget: string }, { label: "Text", name: t, widget: string } ]
+          - { label: "Songs heading", name: tracks_heading, widget: string }
+          - { label: "Songs note", name: tracks_note, widget: string }
+          - label: "Songs"
+            name: tracks
+            widget: list
+            fields: [ { label: "Title", name: title, widget: string }, { label: "Note", name: note, widget: string, required: false } ]
+          - { label: "Closing line", name: after, widget: string }
+
+      - name: music
+        label: "Music"
+        file: "content/music.json"
+        fields:
+          - label: "Singles (newest first)"
+            name: singles
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: title, widget: string }
+              - { label: "Small tag", name: tag, widget: string }
+              - { label: "Text", name: text, widget: text }
+              - { label: "YouTube video ID", name: youtube, widget: string, required: false, hint: "The part after watch?v=. Use this or a playlist." }
+              - { label: "YouTube playlist ID", name: playlist, widget: string, required: false, hint: "The part after list=" }
+              - { label: "Button text", name: button, widget: string }
+
+      - name: videos
+        label: "Videos"
+        file: "content/videos.json"
+        fields:
+          - { label: "Line under heading", name: sub_left, widget: string }
+          - label: "Videos"
+            name: items
+            widget: list
+            summary: "{{fields.title}} ({{fields.kind}})"
+            fields:
+              - { label: "Title", name: title, widget: string }
+              - { label: "Kind and year", name: kind, widget: string, hint: "e.g. live · 2026" }
+              - { label: "Description", name: meta, widget: string }
+              - { label: "YouTube video ID", name: youtube, widget: string, required: false, hint: "Plays on the site" }
+              - { label: "YouTube playlist ID", name: playlist, widget: string, required: false }
+              - { label: "Other link (if not on YouTube)", name: link, widget: string, required: false }
+              - { label: "Other link text", name: link_label, widget: string, required: false }
+              - { label: "Wide screen", name: wide, widget: boolean, default: false }
+
+      - name: photos
+        label: "Photos"
+        file: "content/photos.json"
+        fields:
+          - { label: "Line under heading", name: sub_left, widget: string }
+          - { label: "Note under the photos", name: note, widget: text }
+          - label: "Photos"
+            name: items
+            widget: list
+            summary: "{{fields.caption}}"
+            fields:
+              - { label: "Photo", name: src, widget: image, hint: "Large originals are fine; the build resizes them." }
+              - { label: "Caption (also the alt text)", name: caption, widget: string }
+
+      - name: dates
+        label: "Dates"
+        file: "content/dates.json"
+        fields:
+          - { label: "Line under heading (left)", name: sub_left, widget: string }
+          - { label: "Line under heading (right)", name: sub_right, widget: string }
+          - label: "Upcoming"
+            name: upcoming
+            widget: list
+            summary: "{{fields.date}}: {{fields.title}}"
+            fields: &datefields
+              - { label: "Date", name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+              - { label: "Date as shown", name: display, widget: string, hint: "e.g. Oct 23" }
+              - { label: "Kind", name: kind, widget: select, options: ["Live", "TV", "Release", "News", "Film"] }
+              - { label: "Title", name: title, widget: string }
+              - { label: "Note", name: note, widget: string, required: false }
+              - { label: "Link", name: link, widget: string, required: false }
+              - { label: "Link text", name: link_label, widget: string, required: false, hint: "e.g. Tickets, Watch, Read" }
+          - { label: "When nothing is upcoming", name: upcoming_empty, widget: string }
+          - { label: "Note under that", name: upcoming_note, widget: string }
+          - label: "Birthday"
+            name: birthday
+            widget: object
+            fields:
+              - { label: "Month", name: month, widget: number }
+              - { label: "Day", name: day, widget: number }
+              - { label: "Year born", name: year_born, widget: number }
+              - { label: "Calendar link text", name: calendar_label, widget: string }
+          - label: "Past appearances"
+            name: past
+            widget: list
+            summary: "{{fields.date}}: {{fields.title}}"
+            fields: *datefields
+
+      - name: honors
+        label: "Honors"
+        file: "content/honors.json"
+        fields:
+          - { label: "Line under heading (left)", name: sub_left, widget: string }
+          - { label: "Line under heading (right)", name: sub_right, widget: string }
+          - { label: "Photo", name: photo, widget: image, required: false }
+          - { label: "Photo description (alt text)", name: photo_alt, widget: string, required: false }
+          - { label: "Photo caption", name: photo_caption, widget: string, required: false }
+          - label: "Awards"
+            name: items
+            widget: list
+            summary: "{{fields.org}}: {{fields.category}}"
+            fields:
+              - { label: "Organisation", name: org, widget: string }
+              - { label: "Category", name: category, widget: string }
+              - { label: "Won", name: won, widget: boolean, default: false }
+
+      - name: press
+        label: "Press"
+        file: "content/press.json"
+        fields:
+          - label: "Cover story"
+            name: cover
+            widget: object
+            fields:
+              - { label: "Show", name: enabled, widget: boolean }
+              - { label: "Label", name: label, widget: string }
+              - { label: "Publication", name: title, widget: string }
+              - { label: "Text", name: text, widget: string }
+              - { label: "Cover image", name: image, widget: image }
+              - { label: "Cover description (alt text)", name: image_alt, widget: string }
+              - { label: "Second image", name: image2, widget: image, required: false }
+              - { label: "Second image description", name: image2_alt, widget: string, required: false }
+          - label: "Articles (sorted by date automatically)"
+            name: items
+            widget: list
+            summary: "{{fields.date}}: {{fields.outlet}}"
+            fields:
+              - { label: "Date", name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+              - { label: "Date as shown", name: display, widget: string, hint: "e.g. Apr 2026 when the day isn't known" }
+              - { label: "Outlet", name: outlet, widget: string }
+              - { label: "Headline", name: title, widget: string }
+              - { label: "Kind", name: kind, widget: select, options: ["Interview", "Feature", "Performance", "TV", "News"] }
+              - { label: "Link", name: url, widget: string }
+          - label: "Further reading"
+            name: further
+            widget: list
+            fields: [ { label: "Label", name: label, widget: string }, { label: "Link", name: url, widget: string } ]
+
+      - name: fans
+        label: "Fans"
+        file: "content/fans.json"
+        fields:
+          - { label: "Line under heading (left)", name: sub_left, widget: string }
+          - { label: "Line under heading (right)", name: sub_right, widget: string }
+          - { label: "Empty wall message", name: empty, widget: string }
+          - label: "The wall (approved submissions)"
+            name: wall
+            widget: list
+            hint: "New submissions arrive in Netlify → Forms → fan-submission. Copy the ones you approve here."
+            summary: "{{fields.name}}: {{fields.kind}}"
+            fields:
+              - { label: "Name or handle", name: name, widget: string }
+              - { label: "Kind", name: kind, widget: string }
+              - { label: "Text", name: note, widget: text, required: false }
+              - { label: "Link", name: link, widget: string, required: false }
+          - { label: "Form heading", name: form_heading, widget: string }
+          - { label: "Form intro", name: form_text, widget: text }
+          - { label: "Rules", name: rules, widget: list, field: { label: "Rule", name: rule, widget: string } }
+          - { label: "Kinds of submission", name: kinds, widget: list, field: { label: "Kind", name: kind, widget: string } }
+          - { label: "Thank-you message", name: thanks, widget: string }

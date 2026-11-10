@@ -1,0 +1,35 @@
+{% if site.signup.enabled %}
+<section class="signup" aria-labelledby="suH">
+  <div class="grid">
+    <div class="signup-a"><h2 id="suH">{{ site.signup.heading }}</h2><p>{{ site.signup.note }}</p></div>
+    <form class="form signup-b" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-thanks="{{ site.signup.thanks }}">
+      <input type="hidden" name="form-name" value="newsletter">
+      <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <label>Email<input name="email" type="email" required autocomplete="email" maxlength="120"></label>
+      <button type="submit" class="btn">{{ site.signup.button }}</button>
+      <p class="status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+{% endif %}
+{% if site.corrections.enabled %}
+<section class="fix" aria-labelledby="fixH">
+  <div class="grid">
+    <div class="fix-a"><h2 class="hub-h" id="fixH">{{ site.corrections.heading }}</h2><p class="mute">{{ site.corrections.note }}</p></div>
+    <form class="form fix-b" name="correction" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-thanks="{{ site.corrections.thanks }}">
+      <input type="hidden" name="form-name" value="correction">
+      <input type="hidden" name="page" value="{{ page.url }}">
+      <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <label>What needs fixing?<textarea name="note" rows="2" required maxlength="600"></textarea></label>
+      <label>Email (optional)<input name="email" type="email" autocomplete="email" maxlength="120"></label>
+      <button type="submit" class="btn">Send</button>
+      <p class="status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+{% endif %}
+<footer class="foot">
+  <p>{{ site.footer.disclaimer }}</p>
+  <a class="tt lk" href="{{ site.footer.hashtag_url }}">{{ site.footer.hashtag }}</a>
+  <a class="cr lk" href="{{ site.footer.credit.url }}">{{ site.footer.credit.label }}</a>
+</footer>

@@ -1,0 +1,37 @@
+---
+layout: layouts/base.njk
+title: Fans
+description: Fan art, covers, concert clips and messages for Miles Caton. Send yours in.
+pageKey: fans
+next: { label: "story", url: "/story/" }
+---
+{% set heading = "fans" %}{% set subL = fans.sub_left %}{% set subR = fans.sub_right %}{% include "partials/pagehead.njk" %}
+<div class="wall">
+  {% for w in fans.wall %}
+  {% if w.link %}<a class="card" href="{{ w.link }}" rel="nofollow noopener" data-cur="open">{% else %}<div class="card">{% endif %}
+    <span class="k">{{ w.kind }}</span><p>{{ w.note }}</p><span class="by">{{ w.name }}</span>
+  {% if w.link %}</a>{% else %}</div>{% endif %}
+  {% else %}
+  <p class="wall-empty mute">{{ fans.empty }}</p>
+  {% endfor %}
+</div>
+<section class="send grid" aria-labelledby="sendH">
+  <div class="send-a">
+    <h2 class="hub-h" id="sendH">{{ fans.form_heading }}</h2>
+    <p class="send-t">{{ fans.form_text }}</p>
+    <ul class="send-rules mute">{% for r in fans.rules %}<li>{{ r }}</li>{% endfor %}</ul>
+  </div>
+  <form class="form send-b" name="fan-submission" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-thanks="{{ fans.thanks }}">
+    <input type="hidden" name="form-name" value="fan-submission">
+    <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+    <label>Your name or handle<input name="name" required maxlength="60" autocomplete="nickname"></label>
+    <label>What is it?
+      <select name="kind" required><option value="">Choose one</option>{% for k in fans.kinds %}<option>{{ k }}</option>{% endfor %}</select>
+    </label>
+    <label>Link<input name="link" type="url" placeholder="https://" maxlength="300"></label>
+    <label>A few words<textarea name="note" rows="3" maxlength="400"></textarea></label>
+    <label class="chk"><input type="checkbox" name="permission" value="yes" required> I made this or have permission to share it.</label>
+    <button type="submit" class="btn">Send for review</button>
+    <p class="status" role="status" aria-live="polite"></p>
+  </form>
+</section>

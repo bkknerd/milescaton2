@@ -1,0 +1,17 @@
+---
+layout: layouts/base.njk
+title: Honors
+description: Every award and nomination Miles Caton received for Sinners.
+pageKey: honors
+next: { label: "press", url: "/press/" }
+---
+{% set heading = "honors" %}{% set subL = honors.sub_left %}{% set subR = honors.sub_right %}{% include "partials/pagehead.njk" %}
+{%- set won = honors.items | selectattr("won") %}
+<div class="tally">
+  <div><b data-count="{{ won.length }}">{{ won.length }}</b><span>wins</span></div>
+  <div><b data-count="{{ honors.items.length - won.length }}">{{ honors.items.length - won.length }}</b><span>nominations</span></div>
+  {% if honors.photo %}<figure class="hon-ph">{% img honors.photo, honors.photo_alt, "", "(max-width: 900px) 92vw, 28vw" %}<figcaption>{{ honors.photo_caption }}</figcaption></figure>{% endif %}
+</div>
+<ul class="hon">
+  {% for h in honors.items | sort(true, false, "won") %}<li class="fade"><span class="o">{{ h.org }}</span><span class="c">{{ h.category | mdi | safe }}</span><span class="r{% if h.won %} w{% endif %}">{{ "Won" if h.won else "Nominated" }}</span></li>{% endfor %}
+</ul>

@@ -1,0 +1,8 @@
+---
+permalink: /robots.txt
+sitemap: false
+---
+User-agent: *
+Allow: /
+Disallow: /admin/
+Sitemap: {{ "/sitemap.xml" | absUrl(site.url) }}

@@ -1,0 +1,19 @@
+---
+layout: layouts/base.njk
+title: Photos
+description: Portraits, magazine covers, premieres and awards photos of Miles Caton.
+pageKey: photos
+next: { label: "dates", url: "/dates/" }
+---
+{% set heading = "photos" %}{% set subL = photos.sub_left %}{% set subR = (photos.items.length + " photos") %}{% include "partials/pagehead.njk" %}
+<div class="ph-grid">
+  {% for p in photos.items %}
+  {%- set cap = p.caption | mdi | striptags %}
+  <button type="button" class="ph-fig" data-full="{{ p.src }}" data-cap="{{ cap }}" data-alt="{{ cap }}" data-cur="view" aria-label="Open photo: {{ cap }}">{% img p.src, cap, "", "(max-width: 520px) 92vw, (max-width: 900px) 46vw, 31vw" %}<figcaption>{{ p.caption | mdi | safe }}</figcaption><span class="snow" aria-hidden="true"></span></button>
+  {% endfor %}
+</div>
+<p class="ph-note pad mute">{{ photos.note }}</p>
+<dialog class="lb" id="lb" aria-label="Photo viewer">
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <div class="lb-ui"><button type="button" id="lbPrev">prev</button><span id="lbNum" class="mute"></span><button type="button" id="lbNext">next</button><button type="button" id="lbClose">close</button></div>
+</dialog>

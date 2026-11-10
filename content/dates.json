@@ -1,0 +1,87 @@
+{
+  "sub_left": "Appearances, past and upcoming",
+  "sub_right": "Eastern time",
+  "upcoming": [],
+  "upcoming_empty": "No shows or appearances have been announced.",
+  "upcoming_note": "When one is confirmed it goes here first, with a link to tickets or the broadcast.",
+  "birthday": {
+    "month": 3,
+    "day": 3,
+    "year_born": 2005,
+    "calendar_label": "Add it to Google Calendar"
+  },
+  "past": [
+    {
+      "date": "2026-10-23",
+      "display": "Oct 23",
+      "kind": "TV",
+      "title": "*The Jennifer Hudson Show*",
+      "note": "Talked about landing *Sinners* and his Oscars moment",
+      "link": "https://www.broadwayworld.com/bwwtv/article/Miles-Caton-on-Landing-Sinners-and-His-Oscars-Moment-20261023",
+      "link_label": "Watch"
+    },
+    {
+      "date": "2026-10-13",
+      "display": "Oct 13",
+      "kind": "Live",
+      "title": "The Greene Space, New York",
+      "note": "An evening with the Grammy Museum: a conversation and a live set",
+      "link": "",
+      "link_label": ""
+    },
+    {
+      "date": "2026-08-21",
+      "display": "Aug 21",
+      "kind": "Release",
+      "title": "“Lean On”",
+      "note": "Second single on Columbia Records",
+      "link": "https://www.youtube.com/watch?v=TPvGrWa3iWA",
+      "link_label": "Watch"
+    },
+    {
+      "date": "2026-06-01",
+      "display": "Jun",
+      "kind": "TV",
+      "title": "BET Awards",
+      "note": "Presenter",
+      "link": "",
+      "link_label": ""
+    },
+    {
+      "date": "2026-03-25",
+      "display": "Mar 25",
+      "kind": "News",
+      "title": "Signs with Columbia Records",
+      "note": "“Don’t Hate Me” follows",
+      "link": "https://ratedrnb.com/2026/03/miles-caton-columbia-records-dont-hate-me/",
+      "link_label": "Read"
+    },
+    {
+      "date": "2026-03-15",
+      "display": "Mar 15",
+      "kind": "Live",
+      "title": "98th Academy Awards",
+      "note": "“I Lied to You” with Raphael Saadiq",
+      "link": "https://www.essence.com/awards-events/miles-caton-2026-oscars-performance/",
+      "link_label": "Read"
+    },
+    {
+      "date": "2026-02-27",
+      "display": "Feb 27",
+      "kind": "Live",
+      "title": "NPR Tiny Desk",
+      "note": "With Buddy Guy: “Travelin’” and “I Lied to You”",
+      "link": "https://www.npr.org/2026/02/27/g-s1-110938/buddy-guy-tiny-desk-concert",
+      "link_label": "Watch"
+    },
+    {
+      "date": "2025-12-23",
+      "display": "Dec 23",
+      "kind": "TV",
+      "title": "ABC News, *The Year: 2025*",
+      "note": "Looking back on his breakout year",
+      "link": "https://abcnews.com/video/128664397/",
+      "link_label": "Watch"
+    }
+  ]
+}

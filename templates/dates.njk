@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+title: Dates
+description: Miles Caton appearances, past and upcoming, plus a countdown to his birthday.
+pageKey: dates
+next: { label: "honors", url: "/honors/" }
+---
+{% set heading = "dates" %}{% set subL = dates.sub_left %}{% set subR = dates.sub_right %}{% include "partials/pagehead.njk" %}
+<section class="up grid" aria-label="Upcoming">
+  <div class="up-a">
+    <h2 class="hub-h">upcoming</h2>
+    {% if dates.upcoming.length %}
+    <ul class="dl up-list">{% for d in dates.upcoming %}<li><span class="d"><b>{{ d.display }}</b>{{ d | pressYear }}</span><span class="w">{{ d.kind }}</span><span class="t">{{ d.title | mdi | safe }}<small>{{ d.note | mdi | safe }}</small></span>{% if d.link %}<a class="lk e" href="{{ d.link }}">{{ d.link_label }}</a>{% endif %}</li>{% endfor %}</ul>
+    {% else %}
+    <p class="up-none">{{ dates.upcoming_empty }}</p><p class="mute up-s">{{ dates.upcoming_note }}</p>
+    {% endif %}
+  </div>
+  <div class="up-b">
+    <h2 class="hub-h">next on the calendar</h2>
+    <p class="bday"><b id="bdayDays" data-m="{{ dates.birthday.month }}" data-d="{{ dates.birthday.day }}" data-y="{{ dates.birthday.year_born }}">&mdash;</b><span>days until his birthday, March 3. He turns <span id="bdayAge"></span>.</span></p>
+    <a class="lk" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Miles+Caton%27s+birthday&amp;dates=20270303/20270304&amp;recur=RRULE:FREQ%3DYEARLY">{{ dates.birthday.calendar_label }}</a>
+  </div>
+</section>
+<h2 class="hub-h pad past-h">past appearances</h2>
+<ul class="dl">
+  {% for d in dates.past | sortPress %}<li class="fade"><span class="d"><b>{{ d.display }}</b>{{ d | pressYear }}</span><span class="w">{{ d.kind }}</span><span class="t">{{ d.title | mdi | safe }}<small>{{ d.note | mdi | safe }}</small></span>{% if d.link %}<a class="lk e" href="{{ d.link }}">{{ d.link_label }}</a>{% endif %}</li>{% endfor %}
+</ul>

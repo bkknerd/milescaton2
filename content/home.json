@@ -1,0 +1,142 @@
+{
+  "hero": {
+    "photo": "/assets/hero-tv.jpg",
+    "tl": "singer and actor, brooklyn ny",
+    "bl": "city of noise",
+    "br_label": "new single: lean on",
+    "br_url": "/music/",
+    "play_label": "play lean on",
+    "play_youtube": "TPvGrWa3iWA",
+    "play_title": "Lean On"
+  },
+  "release": {
+    "kicker": "new single, out now",
+    "title": "lean on",
+    "facts": [
+      {
+        "label": "released",
+        "value": "August 21, 2026"
+      },
+      {
+        "label": "label",
+        "value": "Columbia Records"
+      },
+      {
+        "label": "follows",
+        "value": "“Don’t Hate Me,” March 2026"
+      }
+    ],
+    "youtube": "TPvGrWa3iWA",
+    "announce_label": "Read the announcement",
+    "announce_url": "https://www.broadwayworld.com/bwwmusic/article/Miles-Caton-Releases-New-Single-LEAN-ON-via-Columbia-Records-20260821"
+  },
+  "bio": {
+    "text": "Miles Caton is a singer and actor from Brooklyn, born in 2005. He was a singer long before he was an actor.",
+    "photo": "/img/cs-camera.jpg",
+    "photo_alt": "Miles Caton holding a film camera in a studio portrait"
+  },
+  "strip": {
+    "label": "photos",
+    "link_label": "See all photos",
+    "photos": [
+      {
+        "src": "/img/cs-window.jpg",
+        "alt": "Black and white portrait of Miles Caton in a NY cap"
+      },
+      {
+        "src": "/img/premiere.jpg",
+        "alt": "Miles Caton with Michael B. Jordan at the Sinners premiere"
+      },
+      {
+        "src": "/img/cs-suede.jpg",
+        "alt": "Miles Caton in a rust suede jacket"
+      },
+      {
+        "src": "/img/neon.jpg",
+        "alt": "Miles Caton in a puffer jacket under strip lights"
+      },
+      {
+        "src": "/img/editorial.jpg",
+        "alt": "Miles Caton in a pinstripe suit on a marble staircase"
+      },
+      {
+        "src": "/img/critics-choice.jpg",
+        "alt": "Miles Caton accepting an award at the Critics’ Choice Awards"
+      }
+    ]
+  },
+  "noise": {
+    "heading": "city of noise",
+    "text": "New York has been called the noisiest city on earth for more than a century. Miles is from Brooklyn. Clips, live sets and release news are posted to the City of Noise account on TikTok under **#cityofnoise**.",
+    "link_label": "@cityofnoise_ on TikTok",
+    "link_url": "https://www.tiktok.com/@cityofnoise_"
+  },
+  "index": [
+    {
+      "label": "story",
+      "url": "/story/",
+      "text": "His career, year by year"
+    },
+    {
+      "label": "sinners",
+      "url": "/sinners/",
+      "text": "Sammie Moore, and the five songs he sings in the film"
+    },
+    {
+      "label": "music",
+      "url": "/music/",
+      "text": "Four singles, 2023 to 2026"
+    },
+    {
+      "label": "videos",
+      "url": "/videos/",
+      "text": "Music videos, live sets and TV"
+    },
+    {
+      "label": "photos",
+      "url": "/photos/",
+      "text": "Portraits, covers and red carpet photos"
+    },
+    {
+      "label": "dates",
+      "url": "/dates/",
+      "text": "Appearances, past and upcoming"
+    },
+    {
+      "label": "honors",
+      "url": "/honors/",
+      "text": "Nine wins and five nominations"
+    },
+    {
+      "label": "press",
+      "url": "/press/",
+      "text": "Interviews, features and performances"
+    },
+    {
+      "label": "fans",
+      "url": "/fans/",
+      "text": "Send in your fan art, covers and clips"
+    }
+  ],
+  "signoff": {
+    "text": "lean on. out now on Columbia.",
+    "links": [
+      {
+        "label": "YouTube",
+        "url": "https://www.youtube.com/watch?v=TPvGrWa3iWA"
+      },
+      {
+        "label": "@cityofnoise_",
+        "url": "https://www.tiktok.com/@cityofnoise_"
+      },
+      {
+        "label": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Miles_Caton"
+      },
+      {
+        "label": "IMDb",
+        "url": "https://www.imdb.com/name/nm10416836/"
+      }
+    ]
+  }
+}

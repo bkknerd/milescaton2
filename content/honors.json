@@ -1,0 +1,79 @@
+{
+  "sub_left": "All for *Sinners*",
+  "sub_right": "2025 to 2026",
+  "photo": "/img/critics-choice.jpg",
+  "photo_alt": "Miles Caton accepting Best Young Performer at the Critics’ Choice Awards",
+  "photo_caption": "Best Young Performer, Critics’ Choice Awards",
+  "items": [
+    {
+      "org": "Critics’ Choice Awards",
+      "category": "Best Young Performer",
+      "won": true
+    },
+    {
+      "org": "NAACP Image Awards",
+      "category": "Outstanding Breakthrough Performance, Motion Picture",
+      "won": true
+    },
+    {
+      "org": "The Actor Awards",
+      "category": "Outstanding Performance by a Cast",
+      "won": true
+    },
+    {
+      "org": "Gotham Awards",
+      "category": "Ensemble Tribute",
+      "won": true
+    },
+    {
+      "org": "SCAD Savannah Film Festival",
+      "category": "Rising Star",
+      "won": true
+    },
+    {
+      "org": "Washington D.C. Area Film Critics",
+      "category": "Best Youth Performance",
+      "won": true
+    },
+    {
+      "org": "Astra Midseason Movie Awards",
+      "category": "Best Supporting Actor",
+      "won": true
+    },
+    {
+      "org": "Michigan Movie Critics Guild",
+      "category": "Breakthrough",
+      "won": true
+    },
+    {
+      "org": "New York Film Critics Online",
+      "category": "Best Ensemble Cast",
+      "won": true
+    },
+    {
+      "org": "BAFTA",
+      "category": "EE Rising Star Award, 2026",
+      "won": false
+    },
+    {
+      "org": "The Actor Awards",
+      "category": "Male Actor in a Supporting Role",
+      "won": false
+    },
+    {
+      "org": "NAACP Image Awards",
+      "category": "Supporting Actor, Motion Picture",
+      "won": false
+    },
+    {
+      "org": "Saturn Awards",
+      "category": "Best Young Performer in a Film",
+      "won": false
+    },
+    {
+      "org": "World Soundtrack Awards",
+      "category": "Best Original Song, “I Lied to You”",
+      "won": false
+    }
+  ]
+}

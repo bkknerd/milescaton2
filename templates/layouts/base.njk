@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{%- set pageTitle = (title + " · " + site.name) if title else site.title %}
+{%- set pageDesc = description or site.description %}
+<title>{{ pageTitle }}</title>
+<meta name="description" content="{{ pageDesc }}">
+<link rel="canonical" href="{{ page.url | absUrl(site.url) }}">
+<meta name="theme-color" content="#0A0A0A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ pageTitle }}">
+<meta property="og:description" content="{{ pageDesc }}">
+<meta property="og:url" content="{{ page.url | absUrl(site.url) }}">
+<meta property="og:image" content="{{ site.og_image | absUrl(site.url) }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/site.css">
+{% if page.url == "/" %}<link rel="preload" href="{{ home.hero.photo }}" as="image">
+<script type="application/ld+json">{{ { "@context": "https://schema.org", "@type": "WebSite", "name": site.name + " fan site", "url": site.url, "about": { "@type": "Person", "name": "Miles Caton", "birthDate": "2005-03-03", "birthPlace": "Brooklyn, New York", "jobTitle": ["Singer", "Actor"], "sameAs": ["https://en.wikipedia.org/wiki/Miles_Caton", "https://www.imdb.com/name/nm10416836/", "https://music.apple.com/us/artist/1674606130"] } } | dump | safe }}</script>{% endif %}
+</head>
+<body class="page-{{ pageKey or 'page' }}">
+<a class="skip" href="#main">Skip to content</a>
+{% include "partials/header.njk" %}
+<main id="main" tabindex="-1">
+{{ content | safe }}
+{% if next %}<div class="next"><span class="mute">next</span><a href="{{ next.url }}">{{ next.label }}</a></div>{% endif %}
+</main>
+{% include "partials/footer.njk" %}
+<canvas id="flip" aria-hidden="true"></canvas>
+<canvas id="grain" aria-hidden="true"></canvas>
+<div class="cur" aria-hidden="true"></div><div class="cur-ring" aria-hidden="true"><span></span></div>
+<dialog class="tvp" id="tvp" aria-label="Video player">
+  <div class="tvp-in">
+    <div class="tvp-screen"><div id="tvSlot"></div></div>
+    <div class="tvp-ui"><p id="tvTitle"></p><a class="lk" id="tvOut" href="https://www.youtube.com/" target="_blank" rel="noopener">Open on YouTube</a><button type="button" id="tvClose">close</button></div>
+  </div>
+</dialog>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

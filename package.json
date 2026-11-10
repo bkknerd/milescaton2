@@ -1,0 +1,21 @@
+{
+  "name": "miles-caton-site-2",
+  "private": true,
+  "description": "Miles Caton fan site, version 2. Content lives in /content and is edited at /admin.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs && node scripts/check.mjs",
+    "check": "node scripts/check.mjs",
+    "start": "node scripts/build.mjs --serve",
+    "cms": "npx decap-server"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "markdown-it": "14.1.0",
+    "nunjucks": "3.2.4",
+    "sharp": "0.34.4",
+    "yaml": "2.8.1"
+  }
+}

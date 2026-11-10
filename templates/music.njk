@@ -1,0 +1,20 @@
+---
+layout: layouts/base.njk
+title: Music
+description: Every Miles Caton single, from This Ain't It to Lean On. Each one plays right on the page.
+pageKey: music
+next: { label: "videos", url: "/videos/" }
+---
+<h1 class="vh">Music</h1>
+<div class="panels">
+  {% for s in music.singles %}
+  <article class="panel">
+    <div class="top-line"><span>music</span><span class="mute">{{ s.tag }}</span></div>
+    <h2>{{ s.title }}</h2>
+    <div class="row"><p>{{ s.text | mdi | safe }}</p>
+      {% if s.youtube %}<a class="play" href="https://www.youtube.com/watch?v={{ s.youtube }}" data-yt="{{ s.youtube }}" data-title="{{ s.title }}" data-cur="play"><i aria-hidden="true"></i>{{ s.button }}</a>
+      {% elif s.playlist %}<a class="play" href="https://www.youtube.com/playlist?list={{ s.playlist }}" data-ytlist="{{ s.playlist }}" data-title="{{ s.title }}" data-cur="play"><i aria-hidden="true"></i>{{ s.button }}</a>{% endif %}
+    </div>
+  </article>
+  {% endfor %}
+</div>

@@ -1,0 +1,43 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Long cache for fingerprinted / rarely-changing files
+[[headers]]
+  for = "/img/r/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Security headers (YouTube players load in an iframe from youtube-nocookie.com)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    X-Frame-Options = "SAMEORIGIN"
+
+# The CMS must never be indexed
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+# Addresses from the first Miles Caton site, in case links to them are shared
+[[redirects]]
+  from = "/watch/*"
+  to = "/videos/"
+  status = 301
+[[redirects]]
+  from = "/portraits/*"
+  to = "/photos/"
+  status = 301
+
+# /admin without the slash goes to the editor
+[[redirects]]
+  from = "/admin"
+  to = "/admin/"
+  status = 301

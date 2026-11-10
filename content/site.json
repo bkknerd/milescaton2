@@ -1,0 +1,102 @@
+{
+  "name": "Miles Caton",
+  "logo": "/img/signature.webp",
+  "title": "Miles Caton",
+  "description": "Fan site for Miles Caton, singer and actor from Brooklyn. Story, Sinners, music, videos, photos, dates, honors and press.",
+  "url": "https://milescaton2.netlify.app",
+  "og_image": "/img/og.jpg",
+  "nav": [
+    {
+      "label": "story",
+      "url": "/story/"
+    },
+    {
+      "label": "sinners",
+      "url": "/sinners/"
+    },
+    {
+      "label": "music",
+      "url": "/music/"
+    },
+    {
+      "label": "videos",
+      "url": "/videos/"
+    },
+    {
+      "label": "photos",
+      "url": "/photos/"
+    },
+    {
+      "label": "dates",
+      "url": "/dates/"
+    },
+    {
+      "label": "honors",
+      "url": "/honors/"
+    },
+    {
+      "label": "press",
+      "url": "/press/"
+    },
+    {
+      "label": "fans",
+      "url": "/fans/"
+    }
+  ],
+  "listen": [
+    {
+      "label": "Apple Music",
+      "note": "All releases",
+      "url": "https://music.apple.com/us/artist/1674606130"
+    },
+    {
+      "label": "Spotify",
+      "note": "Search “Miles Caton”",
+      "url": "https://open.spotify.com/search/Miles%20Caton"
+    },
+    {
+      "label": "YouTube",
+      "note": "“Lean On” video",
+      "url": "https://www.youtube.com/watch?v=TPvGrWa3iWA"
+    }
+  ],
+  "follow": [
+    {
+      "label": "Instagram",
+      "note": "@_milescaton_",
+      "url": "https://www.instagram.com/_milescaton_/"
+    },
+    {
+      "label": "TikTok",
+      "note": "@_milescaton_",
+      "url": "https://www.tiktok.com/@_milescaton_"
+    },
+    {
+      "label": "City of Noise",
+      "note": "@cityofnoise_ on TikTok",
+      "url": "https://www.tiktok.com/@cityofnoise_"
+    }
+  ],
+  "signup": {
+    "enabled": true,
+    "heading": "Get an email when there’s news",
+    "note": "New music, dates and appearances. Nothing else, and you can leave any time.",
+    "button": "Sign up",
+    "thanks": "You’re on the list."
+  },
+  "corrections": {
+    "enabled": true,
+    "heading": "Spotted something out of date?",
+    "note": "Tell us what’s wrong and we’ll fix it. Add your email if you’d like a reply.",
+    "thanks": "Thanks. We’ll take a look."
+  },
+  "footer": {
+    "hashtag": "#cityofnoise",
+    "hashtag_url": "https://www.tiktok.com/@cityofnoise_",
+    "disclaimer": "A fan site. Not affiliated with or endorsed by Miles Caton, his team, Columbia Records or Warner Bros. Photos belong to their photographers; rights holders can ask for a credit or removal using the form above.",
+    "credit": {
+      "label": "Site by Draft & Logic",
+      "url": "https://draftandlogic.com"
+    }
+  }
+}

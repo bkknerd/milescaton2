@@ -1,0 +1,20 @@
+{
+  "sub_left": "Fan art, covers, concert clips and messages",
+  "sub_right": "Reviewed before posting",
+  "empty": "Nothing on the wall yet. Send something in and it can be the first.",
+  "wall": [],
+  "form_heading": "send something in",
+  "form_text": "Share a link to your fan art, a cover, a clip from a show or a message for other fans. Every submission is checked before it goes on the wall.",
+  "rules": [
+    "Post it on Instagram, TikTok or YouTube first, then send the link.",
+    "Only send work you made or have permission to share.",
+    "Nothing hateful, nothing that isn’t about Miles."
+  ],
+  "kinds": [
+    "Fan art",
+    "Cover",
+    "Concert clip",
+    "Message"
+  ],
+  "thanks": "Thanks. It will show on the wall once it has been checked."
+}

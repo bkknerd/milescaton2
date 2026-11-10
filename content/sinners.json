@@ -1,0 +1,82 @@
+{
+  "title": "Sinners",
+  "year": "2025",
+  "credits": [
+    {
+      "label": "Role",
+      "value": "Samuel “Sammie” Moore, also called Preacherboy"
+    },
+    {
+      "label": "Directed by",
+      "value": "Ryan Coogler"
+    },
+    {
+      "label": "Starring",
+      "value": "Michael B. Jordan"
+    },
+    {
+      "label": "Studio",
+      "value": "Warner Bros. Pictures"
+    },
+    {
+      "label": "Setting",
+      "value": "A juke joint in Clarksdale, Mississippi, one night in 1932"
+    }
+  ],
+  "lead": "His first film role. Sammie is a preacher’s son and a blues guitarist. Caton learned guitar for the part, plays a resonator guitar on screen and recorded much of the film’s acoustic guitar.",
+  "photos": [
+    {
+      "src": "/img/premiere.jpg",
+      "alt": "Miles Caton with Michael B. Jordan at the Sinners premiere",
+      "caption": "With Michael B. Jordan at the *Sinners* premiere"
+    },
+    {
+      "src": "/img/hero-red.jpg",
+      "alt": "Miles Caton in red at the Sinners premiere",
+      "caption": "At the *Sinners* premiere"
+    }
+  ],
+  "facts": [
+    {
+      "n": "16",
+      "t": "Oscar nominations, the most in Academy history"
+    },
+    {
+      "n": "$360M+",
+      "t": "Worldwide box office"
+    },
+    {
+      "n": "5th",
+      "t": "Highest-grossing horror film of all time"
+    },
+    {
+      "n": "No. 1",
+      "t": "Biggest opening for an original R-rated film this decade"
+    }
+  ],
+  "tracks_heading": "His songs in the film",
+  "tracks_note": "Five tracks on the soundtrack, all sung by Miles Caton.",
+  "tracks": [
+    {
+      "title": "This Little Light of Mine",
+      "note": "Traditional"
+    },
+    {
+      "title": "Travelin’",
+      "note": "Also performed at Tiny Desk with Buddy Guy"
+    },
+    {
+      "title": "Juke",
+      "note": ""
+    },
+    {
+      "title": "I Lied to You",
+      "note": "Performed at the 98th Academy Awards. World Soundtrack Award nominee"
+    },
+    {
+      "title": "Last Time (I Seen the Sun)",
+      "note": "Co-written by Caton with Alice Smith and Ludwig Göransson"
+    }
+  ],
+  "after": "No new film or TV role has been announced yet."
+}

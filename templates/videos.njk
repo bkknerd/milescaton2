@@ -1,0 +1,20 @@
+---
+layout: layouts/base.njk
+title: Videos
+description: Miles Caton music videos, live performances and TV appearances. They play right here.
+pageKey: videos
+next: { label: "photos", url: "/photos/" }
+---
+{% set heading = "videos" %}{% set subL = videos.sub_left %}{% set subR = (videos.items.length + " videos") %}{% include "partials/pagehead.njk" %}
+<div class="screens">
+  {% for v in videos.items %}
+  {%- set cls = "scr fade" + (" wide" if v.wide else "") %}
+  {% if v.youtube or v.playlist %}
+  <a class="{{ cls }}" href="{% if v.youtube %}https://www.youtube.com/watch?v={{ v.youtube }}{% else %}https://www.youtube.com/playlist?list={{ v.playlist }}{% endif %}" {% if v.youtube %}data-yt="{{ v.youtube }}"{% else %}data-ytlist="{{ v.playlist }}"{% endif %} data-title="{{ v.title }}" data-cur="play"><span class="kind">{{ v.kind }}</span><i class="pl" aria-hidden="true"></i><div><h2>{{ v.title }}</h2><p class="meta">{{ v.meta | mdi | safe }}</p><p class="go">Play</p></div></a>
+  {% elif v.link %}
+  <a class="{{ cls }}" href="{{ v.link }}" data-cur="open"><span class="kind">{{ v.kind }}</span><div><h2>{{ v.title }}</h2><p class="meta">{{ v.meta | mdi | safe }}</p><p class="go">{{ v.link_label }}</p></div></a>
+  {% else %}
+  <div class="{{ cls }}"><span class="kind">{{ v.kind }}</span><div><h2>{{ v.title }}</h2><p class="meta">{{ v.meta | mdi | safe }}</p></div></div>
+  {% endif %}
+  {% endfor %}
+</div>

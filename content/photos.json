@@ -1,0 +1,78 @@
+{
+  "sub_left": "Portraits, premieres and awards",
+  "note": "Photos belong to their photographers. Rights holders can ask for a credit or for removal using the form below.",
+  "items": [
+    {
+      "src": "/img/cs-window.jpg",
+      "caption": "Black and white, NY cap and glasses"
+    },
+    {
+      "src": "/img/premiere.jpg",
+      "caption": "With Michael B. Jordan at the *Sinners* premiere"
+    },
+    {
+      "src": "/img/cs-suede.jpg",
+      "caption": "Rust suede jacket against green"
+    },
+    {
+      "src": "/img/critics-choice.jpg",
+      "caption": "Accepting Best Young Performer at the Critics’ Choice Awards"
+    },
+    {
+      "src": "/img/editorial.jpg",
+      "caption": "Pinstripe suit on a marble staircase"
+    },
+    {
+      "src": "/img/cs-camera.jpg",
+      "caption": "Leather varsity jacket, Super 8 camera"
+    },
+    {
+      "src": "/img/hero-red.jpg",
+      "caption": "In red at the *Sinners* premiere"
+    },
+    {
+      "src": "/img/portrait-wide.jpg",
+      "caption": "Monogram suit and round gold glasses"
+    },
+    {
+      "src": "/img/pinstripe.jpg",
+      "caption": "Brown pinstripe on the red carpet"
+    },
+    {
+      "src": "/img/cs-denim.jpg",
+      "caption": "Blue chore jacket against grey"
+    },
+    {
+      "src": "/img/stage.jpg",
+      "caption": "Speaking on stage at a panel"
+    },
+    {
+      "src": "/img/cs-kneel.jpg",
+      "caption": "Kneeling with the Super 8 against blue"
+    },
+    {
+      "src": "/img/neon.jpg",
+      "caption": "Puffer jacket under strip lights"
+    },
+    {
+      "src": "/img/tux.jpg",
+      "caption": "Shawl-collar tuxedo"
+    },
+    {
+      "src": "/img/qg-cover.jpg",
+      "caption": "On the cover of *The Quintessential Gentleman*"
+    },
+    {
+      "src": "/img/getting-ready.jpg",
+      "caption": "Getting ready before an event"
+    },
+    {
+      "src": "/img/qg-glasses.jpg",
+      "caption": "Tinted glasses, for *The Quintessential Gentleman*"
+    },
+    {
+      "src": "/img/front-row.jpg",
+      "caption": "Front row at a fashion show"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+---
+layout: layouts/base.njk
+title: Sinners
+description: Miles Caton as Sammie Moore in Ryan Coogler's Sinners, and the five songs he sings in the film.
+pageKey: sinners
+next: { label: "music", url: "/music/" }
+---
+<div class="film-hero"><h1 class="t rv"><i>{{ sinners.title }}</i><small>{{ sinners.year }}</small></h1></div>
+<section class="film-meta grid" aria-label="Credits">
+  <dl class="fade">{% for c in sinners.credits %}<dt>{{ c.label }}</dt><dd>{{ c.value | mdi | safe }}</dd>{% endfor %}</dl>
+  <p class="lead fade">{{ sinners.lead | mdi | safe }}</p>
+</section>
+{% if sinners.photos.length %}<div class="film-ph">
+  {% for p in sinners.photos %}<figure class="fade">{% img p.src, p.alt, "", "(max-width: 900px) 92vw, 50vw" %}<figcaption>{{ p.caption | mdi | safe }}</figcaption></figure>{% endfor %}
+</div>{% endif %}
+<div class="facts">{% for f in sinners.facts %}<div class="fade"><b>{{ f.n }}</b><span>{{ f.t | mdi | safe }}</span></div>{% endfor %}</div>
+<section class="tracks" aria-labelledby="trH">
+  <h2 class="rv" id="trH">{{ sinners.tracks_heading }}</h2>
+  <p class="s">{{ sinners.tracks_note }}</p>
+  <ol>{% for t in sinners.tracks %}<li><b>{{ t.title }}</b><span>{{ t.note | mdi | safe }}</span></li>{% endfor %}</ol>
+</section>
+<div class="film-more grid"><p class="fade">{{ sinners.after | mdi | safe }}</p></div>

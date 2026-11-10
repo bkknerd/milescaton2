@@ -1,0 +1,156 @@
+{
+  "cover": {
+    "enabled": true,
+    "label": "on the cover",
+    "title": "*The Quintessential Gentleman*",
+    "text": "Cover story on the breakout star of Ryan Coogler’s *Sinners*.",
+    "image": "/img/qg-cover.jpg",
+    "image_alt": "Miles Caton on the cover of The Quintessential Gentleman",
+    "image2": "/img/qg-glasses.jpg",
+    "image2_alt": "Miles Caton in tinted glasses, from The Quintessential Gentleman shoot"
+  },
+  "items": [
+    {
+      "date": "2026-10-23",
+      "display": "Oct 23, 2026",
+      "outlet": "BroadwayWorld",
+      "title": "Miles Caton on landing *Sinners* and his Oscars moment, on *The Jennifer Hudson Show*",
+      "kind": "TV",
+      "url": "https://www.broadwayworld.com/bwwtv/article/Miles-Caton-on-Landing-Sinners-and-His-Oscars-Moment-20261023"
+    },
+    {
+      "date": "2026-08-21",
+      "display": "Aug 21, 2026",
+      "outlet": "BroadwayWorld",
+      "title": "Miles Caton releases new single “Lean On” via Columbia Records",
+      "kind": "News",
+      "url": "https://www.broadwayworld.com/bwwmusic/article/Miles-Caton-Releases-New-Single-LEAN-ON-via-Columbia-Records-20260821"
+    },
+    {
+      "date": "2026-04-03",
+      "display": "Apr 2026",
+      "outlet": "HITS Daily Double",
+      "title": "New & Developing: Miles Caton (Columbia)",
+      "kind": "Feature",
+      "url": "https://www.hitsdailydouble.com/news/new-and-developing-q2/miles-caton-columbia-2026-04-07"
+    },
+    {
+      "date": "2026-03-25",
+      "display": "Mar 25, 2026",
+      "outlet": "Rated R&B",
+      "title": "Miles Caton signs to Columbia Records, shares “Don’t Hate Me” news",
+      "kind": "News",
+      "url": "https://ratedrnb.com/2026/03/miles-caton-columbia-records-dont-hate-me/"
+    },
+    {
+      "date": "2026-03-15",
+      "display": "Mar 15, 2026",
+      "outlet": "Essence",
+      "title": "Miles Caton’s “I Lied to You” at the 98th Academy Awards",
+      "kind": "Performance",
+      "url": "https://www.essence.com/awards-events/miles-caton-2026-oscars-performance/"
+    },
+    {
+      "date": "2026-03-14",
+      "display": "Mar 2026",
+      "outlet": "Rolling Stone AU",
+      "title": "Shaboozey and Misty Copeland join Miles Caton and Raphael Saadiq for “I Lied to You” at the Oscars",
+      "kind": "Performance",
+      "url": "https://au.rollingstone.com/movies/movie-news/miles-caton-raphael-saadiq-i-lied-to-you-performance-oscars-92514"
+    },
+    {
+      "date": "2026-02-27",
+      "display": "Feb 27, 2026",
+      "outlet": "NPR Music",
+      "title": "Buddy Guy: Tiny Desk Concert, with Miles Caton",
+      "kind": "Performance",
+      "url": "https://www.npr.org/2026/02/27/g-s1-110938/buddy-guy-tiny-desk-concert"
+    },
+    {
+      "date": "2026-02-26",
+      "display": "Feb 26, 2026",
+      "outlet": "Amsterdam News",
+      "title": "Miles Caton talks working with the cast of *Sinners*",
+      "kind": "Interview",
+      "url": "https://amsterdamnews.com/news/2026/02/26/miles-caton-talks-working-the-talented-cast-of-sinners/"
+    },
+    {
+      "date": "2026-01-02",
+      "display": "2026",
+      "outlet": "Screen Daily",
+      "title": "Why first-time actor Miles Caton was “extremely ready” for his breakout role",
+      "kind": "Interview",
+      "url": "https://www.screendaily.com/features/why-first-time-actor-miles-caton-was-extremely-ready-for-his-breakout-role-in-sinners/5213484.article"
+    },
+    {
+      "date": "2026-01-01",
+      "display": "2026",
+      "outlet": "The Hollywood Reporter",
+      "title": "Next Big Thing: Miles Caton",
+      "kind": "Interview",
+      "url": "https://www.hollywoodreporter.com/movies/movie-features/miles-caton-sinners-music-goals-oscars-interview-1236508141/"
+    },
+    {
+      "date": "2025-12-23",
+      "display": "Dec 23, 2025",
+      "outlet": "ABC News",
+      "title": "Miles Caton looks back on his breakout year",
+      "kind": "TV",
+      "url": "https://abcnews.com/video/128664397/"
+    },
+    {
+      "date": "2025-04-24",
+      "display": "Apr 24, 2025",
+      "outlet": "Business Insider",
+      "title": "20-year-old Miles Caton was the surprise star of *Sinners*",
+      "kind": "Feature",
+      "url": "https://www.businessinsider.com/sinners-breakout-star-miles-caton-music-acting-career-family-2025-4"
+    },
+    {
+      "date": "2025-04-21",
+      "display": "Apr 2025",
+      "outlet": "Revolt",
+      "title": "Who is Miles Caton? Meet the singer and actor from *Sinners*",
+      "kind": "Feature",
+      "url": "https://www.revolt.tv/article/seven-things-to-know-about-sinners-star-miles-caton"
+    },
+    {
+      "date": "2025-04-20",
+      "display": "Apr 2025",
+      "outlet": "The Root",
+      "title": "*Sinners* star Miles Caton was a child prodigy on TV with Steve Harvey",
+      "kind": "Feature",
+      "url": "https://theroot.com/a-must-see-sinners-star-miles-caton-was-a-child-prodig-1851777398"
+    },
+    {
+      "date": "2025-04-19",
+      "display": "Apr 19, 2025",
+      "outlet": "TheWrap",
+      "title": "Who is Miles Caton? The R&B singer making his acting debut in *Sinners*",
+      "kind": "Feature",
+      "url": "https://thewrap.com/who-is-miles-caton-sinners"
+    },
+    {
+      "date": "2025-04-18",
+      "display": "Apr 18, 2025",
+      "outlet": "L’Officiel USA",
+      "title": "Who is Miles Caton? The actor and singer from Ryan Coogler’s *Sinners*",
+      "kind": "Feature",
+      "url": "https://www.lofficielusa.com/pop-culture/who-is-miles-caton-actor-singer-sinners-movie"
+    }
+  ],
+  "further": [
+    {
+      "label": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Miles_Caton"
+    },
+    {
+      "label": "IMDb",
+      "url": "https://www.imdb.com/name/nm10416836/"
+    },
+    {
+      "label": "BAFTA Rising Star profile",
+      "url": "https://www.bafta.org/people/miles-caton/"
+    }
+  ]
+}

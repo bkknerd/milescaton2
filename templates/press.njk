@@ -1,0 +1,31 @@
+---
+layout: layouts/base.njk
+title: Press
+description: Interviews, features, performances and TV coverage of Miles Caton, newest first.
+pageKey: press
+next: { label: "fans", url: "/fans/" }
+---
+{% set heading = "press" %}{% include "partials/pagehead.njk" %}
+{%- set c = press.cover %}
+{% if c.enabled %}
+<section class="cover grid" aria-label="Cover story">
+  <figure class="cover-ph fade">{% img c.image, c.image_alt, "", "(max-width: 900px) 58vw, 32vw" %}</figure>
+  <div class="cover-t fade"><p class="hub-h">{{ c.label }}</p><h2 class="cover-h">{{ c.title | mdi | safe }}</h2><p class="mute">{{ c.text | mdi | safe }}</p></div>
+  {% if c.image2 %}<figure class="cover-ph2 fade">{% img c.image2, c.image2_alt, "", "(max-width: 900px) 40vw, 24vw" %}</figure>{% endif %}
+</section>
+{% endif %}
+<div class="filters" role="group" aria-label="Filter press">
+  <button type="button" aria-pressed="true" data-f="all">All</button>
+  {% for k in press.items | uniqKinds %}<button type="button" aria-pressed="false" data-f="{{ k }}">{{ k }}</button>{% endfor %}
+</div>
+<ul class="press" id="pressList">
+  {%- set sorted = press.items | sortPress %}
+  {%- for it in sorted %}
+  {%- set y = it | pressYear %}
+  {%- if loop.first or (sorted[loop.index0 - 1] | pressYear) != y %}
+  <li class="yr-h" data-yr>{{ y }}</li>
+  {%- endif %}
+  <li data-k="{{ it.kind }}"><a href="{{ it.url }}"><span class="d">{{ it | pressDate }}</span><span class="o">{{ it.outlet }}</span><span class="h">{{ it.title | mdi | safe }}</span><span class="k">{{ it.kind }}</span></a></li>
+  {%- endfor %}
+</ul>
+<div class="further"><span class="mute">Further reading</span>{% for l in press.further %} <a class="lk" href="{{ l.url }}">{{ l.label }}</a>{% endfor %}</div>
