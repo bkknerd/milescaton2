@@ -108,6 +108,19 @@ collections:
               - { label: "Top-right play button text", name: play_label, widget: string }
               - { label: "Top-right play button: YouTube video ID", name: play_youtube, widget: string, required: false, hint: "The part after watch?v=" }
               - { label: "Video title (shown in the player)", name: play_title, widget: string }
+          - label: "TV channels"
+            name: channels
+            widget: list
+            hint: "Each one is a channel on the homepage TV. The first is the signature screen. Visitors flip with the buttons, arrow keys or a swipe."
+            summary: "{{fields.year}} {{fields.title}}"
+            fields:
+              - { label: "Title", name: title, widget: string }
+              - { label: "Year", name: year, widget: string, required: false }
+              - { label: "One line", name: line, widget: string, required: false }
+              - { label: "Photo in the static", name: photo, widget: image, required: false, hint: "Only use a photo from that moment. Leave empty for static only." }
+              - { label: "Link text", name: link_label, widget: string, required: false }
+              - { label: "Link", name: link_url, widget: string, required: false }
+              - { label: "YouTube video ID (plays on the site instead of the link)", name: youtube, widget: string, required: false }
           - label: "Latest release"
             name: release
             widget: object

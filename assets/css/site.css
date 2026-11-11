@@ -534,3 +534,33 @@ a.vt-out:hover{background:var(--chalk);color:var(--ink)}
 .story-intro{padding:clamp(40px,6vw,90px) var(--g) clamp(30px,4vw,60px)}
 .story-intro p{grid-column:1/10;font-size:clamp(24px,2.8vw,44px);line-height:1.12;letter-spacing:-.03em;font-weight:500}
 @media (max-width:900px){.story-intro p{grid-column:1/-1}}
+
+/* ---------- change the channel ---------- */
+.sig-hero{transition:opacity .15s}
+.static:not([data-ch="1"]) .sig-hero{opacity:0;visibility:hidden}
+.ch-card{position:absolute;z-index:5;left:var(--g);right:var(--g);bottom:clamp(90px,12vh,140px);max-width:min(980px,92vw);opacity:0;visibility:hidden;transition:opacity .15s}
+.ch-card.on{opacity:1;visibility:visible}
+.ch-year{display:block;font-weight:700;font-size:clamp(64px,10vw,170px);line-height:.8;letter-spacing:-.07em;color:var(--hot);text-shadow:0 0 30px rgba(0,0,0,.6)}
+.ch-title{font-weight:700;font-size:clamp(54px,9vw,156px);line-height:.85;letter-spacing:-.065em;margin:clamp(6px,.8vw,12px) 0 0 -.04em;text-shadow:0 0 40px rgba(0,0,0,.75)}
+.ch-line{margin-top:clamp(14px,1.6vw,22px);max-width:40ch;font-size:clamp(16px,1.4vw,20px);line-height:1.4;background:#000;display:inline-block;padding:6px 10px}
+.ch-link{display:table;margin-top:10px;background:var(--hot);color:var(--on-hot);font-weight:700;padding:6px 12px;font-size:15px}
+.ch-link:hover{background:#fff;color:#000}
+.osd{position:absolute;z-index:6;left:var(--g);top:clamp(110px,14vh,150px);font-weight:700;font-size:clamp(28px,3.2vw,52px);letter-spacing:-.02em;color:#fff;text-shadow:3px 3px 0 #000,0 0 18px rgba(255,255,255,.35);opacity:0;transition:opacity .25s;pointer-events:none}
+.osd b{font-weight:700}
+.osd.show{opacity:1}
+.dial{position:absolute;z-index:6;left:50%;bottom:16px;transform:translateX(-50%);display:flex;align-items:center;gap:4px;background:#000;border:1px solid var(--rule);border-radius:999px;padding:4px}
+.dial-n{font-weight:700;font-size:15px;min-width:92px;text-align:center;letter-spacing:.01em}
+.dial-n .mute{font-weight:400}
+.dial-b{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;transition:background .2s}
+.dial-b:hover{background:var(--hot)}
+.dial-b i{width:9px;height:9px;border-top:2px solid currentColor;border-right:2px solid currentColor}
+.dial-b.ch-prev i{transform:translateX(2px) rotate(-135deg)}
+.dial-b.ch-next i{transform:translateX(-2px) rotate(45deg)}
+.dial-b:hover i{border-color:var(--on-hot)}
+.static:not(.drawn) .dial{opacity:0}
+.dial{transition:opacity .6s}
+@media (max-width:900px){
+  .corner.bl,.corner.br{bottom:70px}
+  .ch-card{bottom:130px}
+  .osd{top:58px}
+}

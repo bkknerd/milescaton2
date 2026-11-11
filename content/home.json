@@ -138,5 +138,61 @@
         "url": "https://www.imdb.com/name/nm10416836/"
       }
     ]
-  }
+  },
+  "channels": [
+    {
+      "title": "Miles Caton",
+      "year": "",
+      "line": "",
+      "photo": "/assets/hero-tv.jpg",
+      "link_label": "",
+      "link_url": "",
+      "youtube": ""
+    },
+    {
+      "title": "Little Big Shots",
+      "year": "2018",
+      "line": "Thirteen years old on NBC, singing “For Every Mountain” on the season three premiere.",
+      "photo": "",
+      "link_label": "His story",
+      "link_url": "/story/",
+      "youtube": ""
+    },
+    {
+      "title": "The View",
+      "year": "2019",
+      "line": "“Never Give Up,” live with Yolanda Adams for Martin Luther King Jr. Day.",
+      "photo": "",
+      "link_label": "His story",
+      "link_url": "/story/",
+      "youtube": ""
+    },
+    {
+      "title": "Sinners",
+      "year": "2025",
+      "line": "His first film role: Sammie Moore, opposite Michael B. Jordan, in Ryan Coogler’s film.",
+      "photo": "/img/hero-red.jpg",
+      "link_label": "About the film",
+      "link_url": "/sinners/",
+      "youtube": ""
+    },
+    {
+      "title": "The Oscars",
+      "year": "2026",
+      "line": "“I Lied to You,” live with Raphael Saadiq at the 98th Academy Awards.",
+      "photo": "",
+      "link_label": "All videos",
+      "link_url": "/videos/",
+      "youtube": ""
+    },
+    {
+      "title": "Lean On",
+      "year": "2026",
+      "line": "Out now on Columbia Records.",
+      "photo": "",
+      "link_label": "Play the video",
+      "link_url": "",
+      "youtube": "TPvGrWa3iWA"
+    }
+  ]
 }

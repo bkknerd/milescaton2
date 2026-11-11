@@ -86,11 +86,27 @@
   /* ---------- the tv on the homepage ---------- */
   const box = $('#static'), cv = $('#tv');
   if (box && cv) {
-    let gl = null, prog, U = {}, t0 = performance.now(), level = 1, raf = 0, last = 0;
+    let gl = null, prog, U = {}, t0 = performance.now(), level = 1, raf = 0, last = 0, tex = null, burst = 0, wantPhoto = '';
+    const pics = {};
+    // put a photo inside the static (or none). Loads once, then reuses it.
+    const setPhoto = (src) => {
+      wantPhoto = src || '';
+      if (!gl) return;
+      if (!src) { gl.uniform1f(U.has, 0); return; }
+      const use = (img) => {
+        if (wantPhoto !== src) return;
+        gl.bindTexture(gl.TEXTURE_2D, tex);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+        [[gl.TEXTURE_MIN_FILTER, gl.LINEAR], [gl.TEXTURE_MAG_FILTER, gl.LINEAR], [gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE], [gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE]].forEach(([k, v]) => gl.texParameteri(gl.TEXTURE_2D, k, v));
+        gl.uniform1i(U.img, 0); gl.uniform2f(U.ires, img.width, img.height); gl.uniform1f(U.has, 1);
+      };
+      if (pics[src] && pics[src].complete) use(pics[src]);
+      else { gl.uniform1f(U.has, 0); const img = pics[src] || (pics[src] = new Image()); img.onload = () => use(img); if (!img.src) img.src = src; }
+    };
     let mx = -1, my = -1, tx = 0, ty = 0, auto = true;
     const VS = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
     const FS = `precision mediump float;
-      uniform vec2 res;uniform float t;uniform vec2 m;uniform float lvl;uniform float rad;uniform float grain;uniform sampler2D img;uniform vec2 ires;uniform float has;uniform float zoom;
+      uniform vec2 res;uniform float t;uniform vec2 m;uniform float lvl;uniform float rad;uniform float grain;uniform sampler2D img;uniform vec2 ires;uniform float has;uniform float zoom;uniform float bur;
       float h(vec2 p){p=fract(p*vec2(443.897,441.423));p+=dot(p,p.yx+19.19);return fract((p.x+p.y)*p.x);}
       void main(){
         vec2 uv=gl_FragCoord.xy/res; vec2 c=uv-.5; float d=dot(c,c);
@@ -101,19 +117,19 @@
         float n=h(px+f*1.37), r=h(px+vec2(1.,0.)+f*1.37), b=h(px-vec2(1.,0.)+f*1.37);
         vec3 col=vec3(mix(n,r,.35),n,mix(n,b,.35));
         float scan=.84+.16*sin(bu.y*res.y*2.1);
-        float roll=exp(-pow((fract(bu.y*.9-t*.06)-.5)*9.,2.));
+        float roll=exp(-pow((fract(bu.y*.9-t*.06-bur*.35)-.5)*9.,2.));
         float q=smoothstep(rad*.35,rad,distance(gl_FragCoord.xy,m));
         float vig=smoothstep(.95,.25,length(c)*1.25);
         float sa=res.x/res.y, ia=ires.x/ires.y;
         vec2 sc=(sa>ia?vec2(1.,ia/sa):vec2(sa/ia,1.))*zoom;
         vec2 fo=clamp(vec2(.47,.36),min(sc*.5,vec2(.5)),max(1.-sc*.5,vec2(.5)));
-        vec2 iu=vec2((bu.x-.5)*sc.x+fo.x,((1.-bu.y)-.5)*sc.y+fo.y);
+        vec2 iu=vec2((bu.x-.5)*sc.x+fo.x+bur*.03*sin(bu.y*90.+t*50.),((1.-bu.y)-.5)*sc.y+fo.y);
         float edge=smoothstep(0.,.05,iu.x)*smoothstep(1.,.95,iu.x)*smoothstep(0.,.05,iu.y)*smoothstep(1.,.95,iu.y);
-        float ph=smoothstep(.04,.92,has*texture2D(img,clamp(iu,0.,1.)).r*edge);
-        float a=lvl*(.82+.18*roll);
+        float ph=smoothstep(.04,.92,has*dot(texture2D(img,clamp(iu,0.,1.)).rgb,vec3(.299,.587,.114))*edge)*(1.-bur);
+        float a=mix(lvl*(.82+.18*roll),1.15,bur);
         vec3 stat=col*scan*a*vig*(.55+.75*ph*has+(1.-has)*.45)+roll*.06*vig;
         vec3 pic=vec3(ph)*(.9+.1*sin(bu.y*res.y*2.1))*vig*1.05;
-        gl_FragColor=vec4(mix(pic,stat,q),1.);
+        gl_FragColor=vec4(mix(pic,stat,max(q,bur)),1.);
       }`;
     const initGL = () => {
       try {
@@ -125,18 +141,10 @@
         gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
         const loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-        ['res', 't', 'm', 'lvl', 'rad', 'grain', 'img', 'ires', 'has', 'zoom'].forEach(k => U[k] = gl.getUniformLocation(prog, k));
-        gl.uniform1f(U.has, 0);
-        if (box.dataset.photo) {
-          const pic = new Image();
-          pic.onload = () => {
-            gl.bindTexture(gl.TEXTURE_2D, gl.createTexture());
-            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, pic);
-            [[gl.TEXTURE_MIN_FILTER, gl.LINEAR], [gl.TEXTURE_MAG_FILTER, gl.LINEAR], [gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE], [gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE]].forEach(([k, v]) => gl.texParameteri(gl.TEXTURE_2D, k, v));
-            gl.uniform1i(U.img, 0); gl.uniform2f(U.ires, pic.width, pic.height); gl.uniform1f(U.has, 1);
-          };
-          pic.src = box.dataset.photo;
-        }
+        ['res', 't', 'm', 'lvl', 'rad', 'grain', 'img', 'ires', 'has', 'zoom', 'bur'].forEach(k => U[k] = gl.getUniformLocation(prog, k));
+        gl.uniform1f(U.has, 0); gl.uniform1f(U.bur, 0);
+        tex = gl.createTexture();
+        setPhoto(box.dataset.photo);
         return true;
       } catch (e) { gl = null; return false; }
     };
@@ -167,6 +175,7 @@
         gl.uniform2f(U.m, mx, cv.height - my); gl.uniform1f(U.lvl, level);
         gl.uniform1f(U.rad, Math.max(cv.width, cv.height) * (wide ? .17 : .2)); gl.uniform1f(U.grain, Math.max(1, 2.6 * DPR));
         gl.uniform1f(U.zoom, cv.width > cv.height * 1.1 ? 1 : 1.16);
+        burst = Math.max(0, burst - .09); gl.uniform1f(U.bur, burst);
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       } else {
         const W = cv.width, H = cv.height;
@@ -205,6 +214,59 @@
     // start the tv once the page has finished loading, so it never delays first paint
     const idle = window.requestIdleCallback || ((f) => setTimeout(f, 200));
     if (document.readyState === 'complete') idle(start); else addEventListener('load', () => idle(start), { once: true });
+
+    /* ---------- change the channel ---------- */
+    const data = $('#chData');
+    if (data) {
+      const chans = JSON.parse(data.textContent), total = chans.length;
+      const cards = $$('.ch-card', box), osd = $('#osd'), osdN = $('#osdN'), label = $('#chLabel');
+      const pad = (n) => String(n).padStart(2, '0');
+      let ch = 1, osdT;
+      const show = (n, quiet) => {
+        n = ((n - 1 + total) % total) + 1;
+        if (n === ch && !quiet) return;
+        ch = n;
+        burst = reduce ? 0 : 1;
+        const swap = () => {
+          box.dataset.ch = n;
+          cards.forEach(c => { const on = +c.dataset.n === n; c.classList.toggle('on', on); c.setAttribute('aria-hidden', !on); $$('a', c).forEach(a => a.tabIndex = on ? 0 : -1); });
+          setPhoto(chans[n - 1].photo);
+          osdN.textContent = pad(n);
+          label.firstChild.nodeValue = `CH ${pad(n)} `;
+          label.setAttribute('aria-label', `Channel ${n} of ${total}: ${chans[n - 1].title}`);
+          osd.classList.add('show'); clearTimeout(osdT); osdT = setTimeout(() => osd.classList.remove('show'), 2200);
+        };
+        reduce ? swap() : setTimeout(swap, 140);
+        // warm up the next channel's photo
+        const nx = chans[n % total].photo; if (nx && !pics[nx]) { pics[nx] = new Image(); pics[nx].src = nx; }
+      };
+      $('#chPrev').addEventListener('click', () => show(ch - 1));
+      $('#chNext').addEventListener('click', () => show(ch + 1));
+      // keyboard: left/right and number keys while the tv is on screen
+      let inView = true;
+      new IntersectionObserver(es => es.forEach(e => inView = e.intersectionRatio > .4), { threshold: [0, .4, 1] }).observe(box);
+      addEventListener('keydown', e => {
+        if (!inView || e.altKey || e.ctrlKey || e.metaKey || /input|textarea|select/i.test(document.activeElement.tagName) || document.querySelector('dialog[open]')) return;
+        if (e.key === 'ArrowRight') { e.preventDefault(); show(ch + 1); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); show(ch - 1); }
+        else if (/^[1-9]$/.test(e.key) && +e.key <= total) show(+e.key);
+      });
+      // swipe sideways on touch screens; vertical swipes still scroll the page
+      let sx = null, sy = null;
+      box.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+      box.addEventListener('touchend', e => {
+        if (sx === null) return;
+        const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null;
+        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) show(ch + (dx < 0 ? 1 : -1));
+      });
+      // sideways trackpad scroll
+      let wheelT = 0;
+      box.addEventListener('wheel', e => {
+        if (Math.abs(e.deltaX) < 30 || Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
+        e.preventDefault(); const now = Date.now(); if (now - wheelT < 600) return; wheelT = now;
+        show(ch + (e.deltaX > 0 ? 1 : -1));
+      }, { passive: false });
+    }
   }
 
   /* ---------- reveals ---------- */

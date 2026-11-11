@@ -3,13 +3,31 @@ layout: layouts/base.njk
 pageKey: home
 ---
 {%- set h = home.hero %}
-<div class="static" id="static" data-photo="{{ h.photo }}">
+<div class="static" id="static" data-photo="{{ h.photo }}" data-ch="1">
   <canvas id="tv" aria-hidden="true"></canvas>
   <h1 class="sig-hero"{% if site.logo %} style="--sig:url('{{ site.logo }}')"{% endif %}><span class="vh">{{ site.name }}</span></h1>
+  {%- for c in home.channels %}{% if not loop.first %}
+  <div class="ch-card" data-n="{{ loop.index }}" aria-hidden="true">
+    {% if c.year %}<span class="ch-year">{{ c.year }}</span>{% endif %}
+    <p class="ch-title">{{ c.title | mdi | safe }}</p>
+    {% if c.line %}<p class="ch-line">{{ c.line | mdi | safe }}</p>{% endif %}
+    {% if c.youtube %}<a class="ch-link" href="https://www.youtube.com/watch?v={{ c.youtube }}" data-yt="{{ c.youtube }}" data-title="{{ c.title }}" data-cur="play" tabindex="-1">{{ c.link_label }}</a>
+    {% elif c.link_url %}<a class="ch-link" href="{{ c.link_url }}" data-cur="open" tabindex="-1">{{ c.link_label }}</a>{% endif %}
+  </div>
+  {%- endif %}{% endfor %}
+  <p class="osd" id="osd" aria-hidden="true">CH <b id="osdN">01</b></p>
   <p class="corner tl">{{ h.tl }}</p>
   {% if h.play_youtube %}<a class="corner tr" href="https://www.youtube.com/watch?v={{ h.play_youtube }}" data-yt="{{ h.play_youtube }}" data-title="{{ h.play_title }}" data-cur="play">{{ h.play_label }}</a>{% endif %}
   <p class="corner bl">{{ h.bl }}</p>
   <a class="corner br" href="{{ h.br_url }}">{{ h.br_label }}</a>
+  {% if home.channels.length > 1 %}
+  <div class="dial" role="group" aria-label="Change channel">
+    <button type="button" class="dial-b ch-prev" id="chPrev" aria-label="Previous channel"><i aria-hidden="true"></i></button>
+    <span class="dial-n" id="chLabel" aria-live="polite">CH 01 <span class="mute">/ {{ "0" if home.channels.length < 10 }}{{ home.channels.length }}</span></span>
+    <button type="button" class="dial-b ch-next" id="chNext" aria-label="Next channel"><i aria-hidden="true"></i></button>
+  </div>
+  <script type="application/json" id="chData">{{ home.channels | dump | safe }}</script>
+  {% endif %}
   <div class="crt" aria-hidden="true"></div>
 </div>
 
