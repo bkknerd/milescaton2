@@ -18,6 +18,7 @@ import nunjucks from "nunjucks";
 import markdownIt from "markdown-it";
 import sharp from "sharp";
 import YAML from "yaml";
+import * as esbuild from "esbuild";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = path.join(ROOT, "dist");
@@ -139,6 +140,18 @@ function picture(r, { alt, cls, sizes, attrs }) {
   );
 }
 
+// ---------------------------------------------------------------- css + js
+async function bundleAssets() {
+  const css = await esbuild.transform(fs.readFileSync(path.join(ROOT, "assets/css/site.css"), "utf8"), { loader: "css", minify: true, target: ["chrome100", "safari15", "firefox100"] });
+  const js = await esbuild.transform(fs.readFileSync(path.join(ROOT, "assets/js/site.js"), "utf8"), { loader: "js", minify: true, target: ["chrome100", "safari15", "firefox100"] });
+  const v = crypto.createHash("sha1").update(css.code + js.code).digest("hex").slice(0, 8);
+  fs.writeFileSync(path.join(OUT, `assets/css/site.${v}.css`), css.code);
+  fs.writeFileSync(path.join(OUT, `assets/js/site.${v}.js`), js.code);
+  fs.rmSync(path.join(OUT, "assets/css/site.css"), { force: true });
+  fs.rmSync(path.join(OUT, "assets/js/site.js"), { force: true });
+  return v;
+}
+
 // ---------------------------------------------------------------- build
 function copy(rel) {
   const from = path.join(ROOT, rel);
@@ -156,6 +169,9 @@ export async function build() {
     content[f.replace(/\.json$/, "")] = JSON.parse(fs.readFileSync(path.join(ROOT, "content", f), "utf8"));
   }
 
+  // minify the stylesheet and script, and name them by content so they can be cached for a year
+  const assetV = await bundleAssets();
+
   const imgCalls = [];
   const env = makeEnv(imgCalls);
   const pages = fs.readdirSync(TPL).filter((f) => f.endsWith(".njk")).map((file) => {
@@ -167,7 +183,7 @@ export async function build() {
   const rendered = [];
   for (const p of pages) {
     const { layout, computed, permalink, sitemap, ...front } = p.data;
-    const ctx = { ...content, ...front, page: { url: p.url }, collections: { all } };
+    const ctx = { ...content, ...front, assetV, page: { url: p.url }, collections: { all } };
     for (const [k, v] of Object.entries(computed || {})) ctx[k] = env.renderString(String(v), ctx);
     let html = env.renderString(p.body, ctx);
     if (layout) html = env.render(layout, { ...ctx, content: new nunjucks.runtime.SafeString(html) });

@@ -9,7 +9,7 @@ next: { label: "dates", url: "/dates/" }
 <div class="ph-grid">
   {% for p in photos.items %}
   {%- set cap = p.caption | mdi | striptags %}
-  <button type="button" class="ph-fig" data-full="{{ p.src }}" data-cap="{{ cap }}" data-alt="{{ cap }}" data-cur="view" aria-label="Open photo: {{ cap }}">{% img p.src, cap, "", "(max-width: 520px) 92vw, (max-width: 900px) 46vw, 31vw" %}<figcaption>{{ p.caption | mdi | safe }}</figcaption><span class="snow" aria-hidden="true"></span></button>
+  <button type="button" class="ph-fig" data-full="{{ p.src }}" data-cap="{{ cap }}" data-alt="{{ cap }}" data-cur="view" aria-label="Open photo: {{ cap }}">{% img p.src, cap, "", "(max-width: 520px) 92vw, (max-width: 900px) 46vw, 31vw", ("fetchpriority=\"high\"" if loop.index0 < 3 else "") %}<figcaption>{{ p.caption | mdi | safe }}</figcaption><span class="snow" aria-hidden="true"></span></button>
   {% endfor %}
 </div>
 <p class="ph-note pad mute">{{ photos.note }}</p>

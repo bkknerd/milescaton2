@@ -5,11 +5,28 @@
 [build.environment]
   NODE_VERSION = "22"
 
-# Long cache for fingerprinted / rarely-changing files
+# Long cache for files whose names change when their content does
 [[headers]]
   for = "/img/r/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+# A week for the photo inside the tv, the signature and icons
+[[headers]]
+  for = "/assets/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+[[headers]]
+  for = "/img/signature.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
 
 # Security headers (YouTube players load in an iframe from youtube-nocookie.com)
 [[headers]]

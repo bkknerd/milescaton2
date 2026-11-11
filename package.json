@@ -17,5 +17,8 @@
     "nunjucks": "3.2.4",
     "sharp": "0.34.4",
     "yaml": "2.8.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.2"
   }
 }

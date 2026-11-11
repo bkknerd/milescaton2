@@ -23,21 +23,13 @@
     root.style.setProperty('--noise', `url(${c.toDataURL()})`);
   })();
 
-  /* grain over everything */
-  const gr = $('#grain');
-  if (gr && !reduce) {
-    const gx = gr.getContext('2d'); let gF = [], gi = 0;
-    const gSize = () => { gr.width = Math.ceil(innerWidth / 2); gr.height = Math.ceil(innerHeight / 2); gF = noiseFrames(gr.width, gr.height, 4); };
-    gSize(); addEventListener('resize', () => { clearTimeout(gSize.t); gSize.t = setTimeout(gSize, 200); });
-    setInterval(() => { if (!document.hidden) gx.putImageData(gF[gi = (gi + 1) % 4], 0, 0); }, 90);
-  }
-
   /* channel change: a short burst of static */
   const fl = $('#flip'), fx = fl.getContext('2d'); let fF = [];
-  const fSize = () => { fl.width = Math.ceil(innerWidth / 4); fl.height = Math.ceil(innerHeight / 4); fF = noiseFrames(fl.width, fl.height, 3); };
-  fSize();
+  // frames are made the first time they're needed, not on page load
+  const fSize = () => { fl.width = Math.ceil(innerWidth / 6); fl.height = Math.ceil(innerHeight / 6); fF = noiseFrames(fl.width, fl.height, 3); };
   const flip = (then, keep) => {
     if (reduce) { then(); return; }
+    if (!fF.length) fSize();
     let k = 0; fl.style.transition = ''; fl.style.opacity = 1;
     const step = () => {
       fx.putImageData(fF[k % 3], 0, 0);
@@ -50,7 +42,7 @@
   // arriving on a page: fade the static out
   if (!reduce && sessionStorage.getItem('mc_flip')) {
     sessionStorage.removeItem('mc_flip');
-    fl.style.opacity = 1; fx.putImageData(fF[0], 0, 0);
+    fSize(); fl.style.opacity = 1; fx.putImageData(fF[0], 0, 0);
     requestAnimationFrame(() => { fl.style.transition = 'opacity .35s'; fl.style.opacity = 0; });
   }
   // leaving: static, then go
@@ -149,17 +141,22 @@
       } catch (e) { gl = null; return false; }
     };
     let ctx2 = null, f2 = [], fi2 = 0;
-    const DPR = Math.min(1.5, devicePixelRatio || 1);
+    // the grain hides resolution, so render at most ~1000px wide and let the browser scale it up
+    let quality = (navigator.hardwareConcurrency || 8) <= 4 || (navigator.connection && navigator.connection.saveData) ? .7 : 1;
+    let DPR = Math.min(1, 1000 / Math.max(innerWidth, 1)) * quality;
+    let frameGap = 40, costs = [];
     const size = () => {
       const r = box.getBoundingClientRect(); if (!r.width) return;
       if (gl) { cv.width = r.width * DPR; cv.height = r.height * DPR; gl.viewport(0, 0, cv.width, cv.height); }
       else { cv.width = Math.ceil(r.width / 3); cv.height = Math.ceil(r.height / 3); f2 = noiseFrames(cv.width, cv.height, 6); }
     };
+    const start = () => {
     if (!initGL()) ctx2 = cv.getContext('2d');
     size();
     const draw = (now) => {
       raf = requestAnimationFrame(draw);
-      if (now - last < 40) return; last = now;
+      if (now - last < frameGap) return; last = now;
+      const t1 = performance.now();
       level = 1 - Math.min(1, (now - t0) / 2200) * .45;
       const wide = cv.width > cv.height;
       if (auto) { const k = now / 2800; tx = cv.width * ((wide ? .47 : .5) + (wide ? .16 : .12) * Math.cos(k)); ty = cv.height * ((wide ? .42 : .3) + (wide ? .14 : .07) * Math.sin(k * 1.3)); }
@@ -168,7 +165,7 @@
       if (gl) {
         gl.uniform2f(U.res, cv.width, cv.height); gl.uniform1f(U.t, now / 1000);
         gl.uniform2f(U.m, mx, cv.height - my); gl.uniform1f(U.lvl, level);
-        gl.uniform1f(U.rad, Math.max(cv.width, cv.height) * (wide ? .17 : .2)); gl.uniform1f(U.grain, 2.6 * DPR);
+        gl.uniform1f(U.rad, Math.max(cv.width, cv.height) * (wide ? .17 : .2)); gl.uniform1f(U.grain, Math.max(1, 2.6 * DPR));
         gl.uniform1f(U.zoom, cv.width > cv.height * 1.1 ? 1 : 1.16);
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       } else {
@@ -179,6 +176,13 @@
         const R = Math.max(W, H) * .17, g = ctx2.createRadialGradient(mx, my, 0, mx, my, R);
         g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(.5, 'rgba(0,0,0,.85)'); g.addColorStop(1, 'rgba(0,0,0,0)');
         ctx2.fillStyle = g; ctx2.fillRect(mx - R, my - R, R * 2, R * 2); ctx2.globalCompositeOperation = 'source-over';
+      }
+      // slow device? draw smaller and less often until each frame is cheap
+      costs.push(performance.now() - t1);
+      if (costs.length === 8) {
+        const avg = costs.reduce((a, b) => a + b, 0) / 8; costs = [];
+        if (avg > 10 && quality > .35) { quality *= .7; DPR = Math.min(1, 1000 / Math.max(innerWidth, 1)) * quality; size(); }
+        else if (avg > 10) frameGap = Math.min(frameGap * 1.5, 160);
       }
       if (reduce) cancelAnimationFrame(raf);
     };
@@ -194,9 +198,13 @@
       });
       box.addEventListener('pointerleave', () => { auto = true; });
     }
+    addEventListener('resize', () => { clearTimeout(size.t); size.t = setTimeout(size, 150); });
+    };
     box.classList.add('on-air');
     setTimeout(() => box.classList.add('drawn'), reduce ? 0 : 650);
-    addEventListener('resize', () => { clearTimeout(size.t); size.t = setTimeout(size, 150); });
+    // start the tv once the page has finished loading, so it never delays first paint
+    const idle = window.requestIdleCallback || ((f) => setTimeout(f, 200));
+    if (document.readyState === 'complete') idle(start); else addEventListener('load', () => idle(start), { once: true });
   }
 
   /* ---------- reveals ---------- */
@@ -279,7 +287,8 @@
     let cur = 0;
     const showPh = (i) => {
       cur = (i + figs.length) % figs.length; const f = figs[cur];
-      lbImg.src = f.dataset.full; lbImg.alt = f.dataset.alt; lbCap.textContent = f.dataset.cap; lbNum.textContent = `${cur + 1} of ${figs.length}`;
+      const gi = $('img', f), webp = $('source[type="image/webp"]', f);
+      lbImg.sizes = '(max-width: 900px) 100vw, 70vw'; lbImg.srcset = webp ? webp.srcset : (gi ? gi.srcset : ''); lbImg.src = gi ? gi.src : f.dataset.full; lbImg.alt = f.dataset.alt; lbCap.textContent = f.dataset.cap; lbNum.textContent = `${cur + 1} of ${figs.length}`;
     };
     const stepPh = (d) => flip(() => showPh(cur + d));
     figs.forEach((f, i) => f.addEventListener('click', () => { showPh(i); try { lb.showModal(); } catch (_) { lb.setAttribute('open', ''); } }));
@@ -358,5 +367,5 @@
     document.addEventListener('pointerover', e => { const t = e.target.closest('[data-cur]'); ring.classList.toggle('big', !!t); lab.textContent = t ? t.dataset.cur : ''; });
   }
 
-  addEventListener('resize', () => { clearTimeout(fSize.t); fSize.t = setTimeout(fSize, 200); });
+  addEventListener('resize', () => { if (fF.length) { clearTimeout(fSize.t); fSize.t = setTimeout(fSize, 200); } });
 })();

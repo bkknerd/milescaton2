@@ -238,7 +238,7 @@ div.scr .go{display:none}
 .foot .tt{grid-column:8/10;color:var(--fg);justify-self:start}
 .foot .cr{grid-column:10/13;justify-self:end;color:var(--fg)}
 #flip{position:fixed;inset:0;z-index:45;width:100%;height:100%;pointer-events:none;opacity:0;image-rendering:pixelated}
-#grain{position:fixed;inset:0;z-index:44;width:100%;height:100%;pointer-events:none;opacity:.045;mix-blend-mode:screen;image-rendering:pixelated}
+#grain{position:fixed;inset:-60px;z-index:44;pointer-events:none;opacity:.05;mix-blend-mode:screen;background:var(--noise) 0 0/180px;image-rendering:pixelated;animation:snow .36s steps(4) infinite;will-change:transform}
 
 
 /* ---------- listen / follow hub ---------- */
