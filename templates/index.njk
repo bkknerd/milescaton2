@@ -18,7 +18,7 @@ pageKey: home
   <p class="corner tl">{{ h.tl }}</p>
   {% if h.play_youtube %}<a class="corner tr" href="https://www.youtube.com/watch?v={{ h.play_youtube }}" data-yt="{{ h.play_youtube }}" data-title="{{ h.play_title }}" data-cur="play">{{ h.play_label }}</a>{% endif %}
   <p class="corner bl">{{ h.bl }}</p>
-  <a class="corner br" href="{{ h.br_url }}">{{ h.br_label }}</a>
+  {% if h.br_label %}<a class="corner br" href="{{ h.br_url }}">{{ h.br_label }}</a>{% endif %}
   {% if home.channels.length > 1 %}
   <div class="dial" role="group" aria-label="Change channel">
     <button type="button" class="dial-b ch-prev" id="chPrev" aria-label="Previous channel"><i aria-hidden="true"></i></button>
@@ -53,17 +53,17 @@ pageKey: home
 </section>
 
 {%- set b = home.bio %}
-<section class="bio grid" aria-label="About Miles">
-  <p class="rv">{{ b.text }}</p>
-  <a class="more lk fade" href="/story/">His story, year by year</a>
-  {% if b.photo %}<figure class="bio-ph fade">{% img b.photo, b.photo_alt, "", "(max-width: 900px) 90vw, 30vw" %}</figure>{% endif %}
-</section>
-
 <section class="strip-ph" aria-labelledby="stripH">
   <div class="strip-head"><h2 class="hub-h" id="stripH">{{ home.strip.label }}</h2><a class="lk" href="/photos/">{{ home.strip.link_label }}</a></div>
   <div class="strip-row">
     {% for p in home.strip.photos %}<a href="/photos/" data-cur="view">{% img p.src, p.alt, "", "(max-width: 900px) 60vw, 22vw" %}</a>{% endfor %}
   </div>
+</section>
+
+<section class="bio grid" aria-label="About Miles">
+  <p class="rv">{{ b.text }}</p>
+  <a class="more lk fade" href="/story/">His story, year by year</a>
+  {% if b.photo %}<figure class="bio-ph fade">{% img b.photo, b.photo_alt, "", "(max-width: 900px) 90vw, 30vw" %}</figure>{% endif %}
 </section>
 
 {%- set n = home.noise %}

@@ -103,11 +103,11 @@ collections:
               - { label: "Photo under the static", name: photo, widget: image, hint: "Black-and-white works best. Face in the upper half." }
               - { label: "Top-left label", name: tl, widget: string }
               - { label: "Bottom-left label", name: bl, widget: string }
-              - { label: "Bottom-right link text", name: br_label, widget: string }
-              - { label: "Bottom-right link", name: br_url, widget: string }
-              - { label: "Top-right play button text", name: play_label, widget: string }
+              - { label: "Bottom-right link text", name: br_label, widget: string, required: false, hint: "Leave empty to hide" }
+              - { label: "Bottom-right link", name: br_url, widget: string, required: false }
+              - { label: "Top-right play button text", name: play_label, widget: string, required: false, hint: "Leave the video ID empty to hide the button" }
               - { label: "Top-right play button: YouTube video ID", name: play_youtube, widget: string, required: false, hint: "The part after watch?v=" }
-              - { label: "Video title (shown in the player)", name: play_title, widget: string }
+              - { label: "Video title (shown in the player)", name: play_title, widget: string, required: false }
           - label: "TV channels"
             name: channels
             widget: list
