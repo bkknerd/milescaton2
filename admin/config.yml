@@ -167,6 +167,7 @@ collections:
         fields:
           - { label: "Line under heading (left)", name: sub_left, widget: string }
           - { label: "Line under heading (right)", name: sub_right, widget: string }
+          - { label: "Opening paragraph", name: intro, widget: text, required: false }
           - { label: "Starting year", name: start_year, widget: string }
           - { label: "Starting note", name: start_note, widget: string }
           - label: "Moments"

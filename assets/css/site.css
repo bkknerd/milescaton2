@@ -529,3 +529,8 @@ a.vt-out:hover{background:var(--chalk);color:var(--ink)}
 .press a:hover .h,.dl li:hover .t{color:var(--hot)}
 .rel .g1{color:var(--hot)}
 .tvp-ui button:hover,.lb-ui button:hover{border-color:var(--hot);color:var(--hot)}
+
+/* story opening paragraph */
+.story-intro{padding:clamp(40px,6vw,90px) var(--g) clamp(30px,4vw,60px)}
+.story-intro p{grid-column:1/10;font-size:clamp(24px,2.8vw,44px);line-height:1.12;letter-spacing:-.03em;font-weight:500}
+@media (max-width:900px){.story-intro p{grid-column:1/-1}}

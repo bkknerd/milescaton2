@@ -6,6 +6,7 @@ pageKey: story
 next: { label: "sinners", url: "/sinners/" }
 ---
 {% set heading = "story" %}{% set subL = story.sub_left %}{% set subR = story.sub_right %}{% include "partials/pagehead.njk" %}
+{% if story.intro %}<div class="story-intro grid"><p class="rv">{{ story.intro | mdi | safe }}</p></div>{% endif %}
 <div class="story">
   <div class="yr" aria-hidden="true"><b id="yrNum">{{ story.start_year }}</b><span class="age" id="yrAge">{{ story.start_note }}</span></div>
   <ol>
