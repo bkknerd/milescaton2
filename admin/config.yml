@@ -120,7 +120,8 @@ collections:
               - { label: "Photo in the static", name: photo, widget: image, required: false, hint: "Only use a photo from that moment. Leave empty for static only." }
               - { label: "Link text", name: link_label, widget: string, required: false }
               - { label: "Link", name: link_url, widget: string, required: false }
-              - { label: "YouTube video ID (plays on the site instead of the link)", name: youtube, widget: string, required: false }
+              - { label: "YouTube video ID", name: youtube, widget: string, required: false, hint: "The part after watch?v=. Plays on the site." }
+              - { label: "Play button text", name: play_label, widget: string, required: false }
           - label: "Latest release"
             name: release
             widget: object

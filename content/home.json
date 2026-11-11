@@ -147,7 +147,8 @@
       "photo": "/assets/hero-tv.jpg",
       "link_label": "",
       "link_url": "",
-      "youtube": ""
+      "youtube": "",
+      "play_label": ""
     },
     {
       "title": "Little Big Shots",
@@ -156,7 +157,8 @@
       "photo": "",
       "link_label": "His story",
       "link_url": "/story/",
-      "youtube": ""
+      "youtube": "oi_d-So-__c",
+      "play_label": "Play the performance"
     },
     {
       "title": "The View",
@@ -165,7 +167,8 @@
       "photo": "",
       "link_label": "His story",
       "link_url": "/story/",
-      "youtube": ""
+      "youtube": "BKyjbzun9KM",
+      "play_label": "Play the performance"
     },
     {
       "title": "Sinners",
@@ -174,25 +177,38 @@
       "photo": "/img/hero-red.jpg",
       "link_label": "About the film",
       "link_url": "/sinners/",
-      "youtube": ""
+      "youtube": "S7jo5Cr6WUA",
+      "play_label": "Play the scene"
+    },
+    {
+      "title": "American Cinematheque Awards",
+      "year": "2025",
+      "line": "“I Lied to You” live with Ludwig Göransson and Raphael Saadiq, honoring Michael B. Jordan.",
+      "photo": "",
+      "link_label": "",
+      "link_url": "",
+      "youtube": "9ieLFgcnuVc",
+      "play_label": "Play the performance"
     },
     {
       "title": "The Oscars",
       "year": "2026",
       "line": "“I Lied to You,” live with Raphael Saadiq at the 98th Academy Awards.",
       "photo": "",
-      "link_label": "All videos",
-      "link_url": "/videos/",
-      "youtube": ""
+      "link_label": "Read about it on Essence",
+      "link_url": "https://www.essence.com/awards-events/miles-caton-2026-oscars-performance/",
+      "youtube": "",
+      "play_label": ""
     },
     {
       "title": "Lean On",
       "year": "2026",
       "line": "Out now on Columbia Records.",
       "photo": "",
-      "link_label": "Play the video",
+      "link_label": "",
       "link_url": "",
-      "youtube": "TPvGrWa3iWA"
+      "youtube": "TPvGrWa3iWA",
+      "play_label": "Play the video"
     }
   ]
 }

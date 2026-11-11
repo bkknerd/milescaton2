@@ -9,10 +9,9 @@ pageKey: home
   {%- for c in home.channels %}{% if not loop.first %}
   <div class="ch-card" data-n="{{ loop.index }}" aria-hidden="true">
     {% if c.year %}<span class="ch-year">{{ c.year }}</span>{% endif %}
-    <p class="ch-title">{{ c.title | mdi | safe }}</p>
+    <p class="ch-title{% if c.title | length > 16 %} long{% endif %}">{{ c.title | mdi | safe }}</p>
     {% if c.line %}<p class="ch-line">{{ c.line | mdi | safe }}</p>{% endif %}
-    {% if c.youtube %}<a class="ch-link" href="https://www.youtube.com/watch?v={{ c.youtube }}" data-yt="{{ c.youtube }}" data-title="{{ c.title }}" data-cur="play" tabindex="-1">{{ c.link_label }}</a>
-    {% elif c.link_url %}<a class="ch-link" href="{{ c.link_url }}" data-cur="open" tabindex="-1">{{ c.link_label }}</a>{% endif %}
+    <p class="ch-links">{% if c.youtube %}<a class="ch-link" href="https://www.youtube.com/watch?v={{ c.youtube }}" data-yt="{{ c.youtube }}" data-title="{{ c.title }}" data-cur="play" tabindex="-1">{{ c.play_label or "Play" }}</a>{% endif %}{% if c.link_url %}<a class="ch-link alt" href="{{ c.link_url }}"{% if c.link_url.startsWith("http") %} target="_blank" rel="noopener"{% endif %} data-cur="open" tabindex="-1">{{ c.link_label }}</a>{% endif %}</p>
   </div>
   {%- endif %}{% endfor %}
   <p class="osd" id="osd" aria-hidden="true">CH <b id="osdN">01</b></p>

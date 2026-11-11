@@ -543,8 +543,11 @@ a.vt-out:hover{background:var(--chalk);color:var(--ink)}
 .ch-year{display:block;font-weight:700;font-size:clamp(64px,10vw,170px);line-height:.8;letter-spacing:-.07em;color:var(--hot);text-shadow:0 0 30px rgba(0,0,0,.6)}
 .ch-title{font-weight:700;font-size:clamp(54px,9vw,156px);line-height:.85;letter-spacing:-.065em;margin:clamp(6px,.8vw,12px) 0 0 -.04em;text-shadow:0 0 40px rgba(0,0,0,.75)}
 .ch-line{margin-top:clamp(14px,1.6vw,22px);max-width:40ch;font-size:clamp(16px,1.4vw,20px);line-height:1.4;background:#000;display:inline-block;padding:6px 10px}
-.ch-link{display:table;margin-top:10px;background:var(--hot);color:var(--on-hot);font-weight:700;padding:6px 12px;font-size:15px}
+.ch-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.ch-link{display:inline-block;background:var(--hot);color:var(--on-hot);font-weight:700;padding:6px 12px;font-size:15px}
 .ch-link:hover{background:#fff;color:#000}
+.ch-link.alt{background:#000;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5)}
+.ch-link.alt:hover{background:#fff;color:#000}
 .osd{position:absolute;z-index:6;left:var(--g);top:clamp(110px,14vh,150px);font-weight:700;font-size:clamp(28px,3.2vw,52px);letter-spacing:-.02em;color:#fff;text-shadow:3px 3px 0 #000,0 0 18px rgba(255,255,255,.35);opacity:0;transition:opacity .25s;pointer-events:none}
 .osd b{font-weight:700}
 .osd.show{opacity:1}
@@ -564,3 +567,4 @@ a.vt-out:hover{background:var(--chalk);color:var(--ink)}
   .ch-card{bottom:130px}
   .osd{top:58px}
 }
+.ch-title.long{font-size:clamp(44px,6.4vw,110px);line-height:.88}
