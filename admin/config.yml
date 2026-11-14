@@ -96,32 +96,12 @@ collections:
         label: "Homepage"
         file: "content/home.json"
         fields:
-          - label: "TV hero"
+          - label: "Top of the page"
             name: hero
             widget: object
             fields:
-              - { label: "Photo under the static", name: photo, widget: image, hint: "Black-and-white works best. Face in the upper half." }
-              - { label: "Top-left label", name: tl, widget: string }
-              - { label: "Bottom-left label", name: bl, widget: string }
-              - { label: "Bottom-right link text", name: br_label, widget: string, required: false, hint: "Leave empty to hide" }
-              - { label: "Bottom-right link", name: br_url, widget: string, required: false }
-              - { label: "Top-right play button text", name: play_label, widget: string, required: false, hint: "Leave the video ID empty to hide the button" }
-              - { label: "Top-right play button: YouTube video ID", name: play_youtube, widget: string, required: false, hint: "The part after watch?v=" }
-              - { label: "Video title (shown in the player)", name: play_title, widget: string, required: false }
-          - label: "TV channels"
-            name: channels
-            widget: list
-            hint: "Each one is a channel on the homepage TV. The first is the signature screen. Visitors flip with the buttons, arrow keys or a swipe."
-            summary: "{{fields.year}} {{fields.title}}"
-            fields:
-              - { label: "Title", name: title, widget: string }
-              - { label: "Year", name: year, widget: string, required: false }
-              - { label: "One line", name: line, widget: string, required: false }
-              - { label: "Photo in the static", name: photo, widget: image, required: false, hint: "Only use a photo from that moment. Leave empty for static only." }
-              - { label: "Link text", name: link_label, widget: string, required: false }
-              - { label: "Link", name: link_url, widget: string, required: false }
-              - { label: "YouTube video ID", name: youtube, widget: string, required: false, hint: "The part after watch?v=. Plays on the site." }
-              - { label: "Play button text", name: play_label, widget: string, required: false }
+              - { label: "Top-left handwritten label", name: tl, widget: string }
+              - { label: "Bottom-left handwritten label", name: bl, widget: string }
           - label: "Latest release"
             name: release
             widget: object
@@ -371,6 +351,9 @@ collections:
               - { label: "Kind", name: kind, widget: string }
               - { label: "Text", name: note, widget: text, required: false }
               - { label: "Link", name: link, widget: string, required: false }
+              - { label: "Chalk drawing", name: drawing, widget: image, required: false, hint: "The PNG that came with the submission. Download it from Netlify → Forms, then upload it here." }
+          - { label: "Drawing board heading", name: pad_heading, widget: string }
+          - { label: "Drawing board hint", name: pad_hint, widget: string }
           - { label: "Form heading", name: form_heading, widget: string }
           - { label: "Form intro", name: form_text, widget: text }
           - { label: "Rules", name: rules, widget: list, field: { label: "Rule", name: rule, widget: string } }

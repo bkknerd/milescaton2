@@ -8,7 +8,7 @@
 <title>{{ pageTitle }}</title>
 <meta name="description" content="{{ pageDesc }}">
 <link rel="canonical" href="{{ page.url | absUrl(site.url) }}">
-<meta name="theme-color" content="#0A0A0A">
+<meta name="theme-color" content="#101312">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{{ site.name }}">
 <meta property="og:title" content="{{ pageTitle }}">
@@ -21,21 +21,23 @@
 <link rel="icon" href="/assets/favicon.png" type="image/png">
 {% if pageKey == "videos" or pageKey == "music" or page.url == "/" %}<link rel="preconnect" href="https://www.youtube-nocookie.com">{% endif %}
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/hand.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.{{ assetV }}.css">
+<script>document.documentElement.className="js"</script>
 {% if page.url == "/" %}<link rel="preload" href="{{ site.logo }}" as="image" fetchpriority="high">
 <script type="application/ld+json">{{ { "@context": "https://schema.org", "@type": "WebSite", "name": site.name + " fan site", "url": site.url, "about": { "@type": "Person", "name": "Miles Caton", "birthDate": "2005-03-03", "birthPlace": "Brooklyn, New York", "jobTitle": ["Singer", "Actor"], "sameAs": ["https://en.wikipedia.org/wiki/Miles_Caton", "https://www.imdb.com/name/nm10416836/", "https://music.apple.com/us/artist/1674606130"] } } | dump | safe }}</script>{% endif %}
 </head>
 <body class="page-{{ pageKey or 'page' }}">
+<canvas id="chalk" aria-hidden="true"></canvas>
 <a class="skip" href="#main">Skip to content</a>
 {% include "partials/header.njk" %}
 <main id="main" tabindex="-1">
 {{ content | safe }}
-{% if next %}<div class="next"><span class="mute">next</span><a href="{{ next.url }}">{{ next.label }}</a></div>{% endif %}
+{% if next %}<div class="next"><span class="mute">next</span><a href="{{ next.url }}" class="chalked">{{ next.label }}</a></div>{% endif %}
 </main>
 {% include "partials/footer.njk" %}
 <canvas id="flip" aria-hidden="true"></canvas>
-<div id="grain" aria-hidden="true"></div>
-<div class="cur" aria-hidden="true"></div><div class="cur-ring" aria-hidden="true"><span></span></div>
+<div class="eraser" aria-hidden="true"></div>
 <dialog class="tvp" id="tvp" aria-label="Video player">
   <div class="tvp-in">
     <div class="tvp-screen"><div id="tvSlot"></div></div>

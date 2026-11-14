@@ -9,9 +9,9 @@ next: { label: "fans", url: "/fans/" }
 {%- set c = press.cover %}
 {% if c.enabled %}
 <section class="cover grid" aria-label="Cover story">
-  <figure class="cover-ph fade">{% img c.image, c.image_alt, "", "(max-width: 900px) 58vw, 32vw" %}</figure>
+  <figure class="cover-ph" data-chalk="frame">{% img c.image, c.image_alt, "", "(max-width: 900px) 58vw, 32vw" %}</figure>
   <div class="cover-t fade"><p class="hub-h">{{ c.label }}</p><h2 class="cover-h">{{ c.title | mdi | safe }}</h2><p class="mute">{{ c.text | mdi | safe }}</p></div>
-  {% if c.image2 %}<figure class="cover-ph2 fade">{% img c.image2, c.image2_alt, "", "(max-width: 900px) 40vw, 24vw" %}</figure>{% endif %}
+  {% if c.image2 %}<figure class="cover-ph2" data-chalk="frame" data-direct>{% img c.image2, c.image2_alt, "", "(max-width: 900px) 40vw, 24vw" %}</figure>{% endif %}
 </section>
 {% endif %}
 <div class="filters" role="group" aria-label="Filter press">

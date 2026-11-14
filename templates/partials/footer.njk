@@ -1,7 +1,7 @@
 {% if site.signup.enabled %}
 <section class="signup" aria-labelledby="suH">
   <div class="grid">
-    <div class="signup-a"><h2 id="suH">{{ site.signup.heading }}</h2><p>{{ site.signup.note }}</p></div>
+    <div class="signup-a"><h2 id="suH" data-chalk="under" data-gutter="l">{{ site.signup.heading }}</h2><p>{{ site.signup.note }}</p></div>
     <form class="form signup-b" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-thanks="{{ site.signup.thanks }}">
       <input type="hidden" name="form-name" value="newsletter">
       <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>

@@ -6,10 +6,7 @@ pageKey: story
 next: { label: "sinners", url: "/sinners/" }
 ---
 {% set heading = "story" %}{% set subL = story.sub_left %}{% set subR = story.sub_right %}{% include "partials/pagehead.njk" %}
-{% if story.intro %}<div class="story-intro grid"><p class="rv">{{ story.intro | mdi | safe }}</p></div>{% endif %}
-<div class="story">
-  <div class="yr" aria-hidden="true"><b id="yrNum">{{ story.start_year }}</b><span class="age" id="yrAge">{{ story.start_note }}</span></div>
-  <ol>
-    {% for it in story.items %}<li data-y="{{ it.year }}" data-a="{{ it.when }}"><span class="when">{{ it.when if it.year == "Now" else (it.year + " · " + it.when) }}</span><h2>{{ it.title | mdi | safe }}</h2><p>{{ it.text | mdi | safe }}</p></li>{% endfor %}
-  </ol>
-</div>
+{% if story.intro %}<div class="story-intro grid"><p>{{ story.intro | mdi | safe }}</p></div>{% endif %}
+<ol class="tl">
+  {% for it in story.items %}<li><span class="when"><b data-chalk="circle" data-direct>{{ it.year }}</b>{% if it.year != "Now" %}<span>{{ it.when }}</span>{% endif %}</span><div><h2>{{ it.title | mdi | safe }}</h2><p>{{ it.text | mdi | safe }}</p></div></li>{% endfor %}
+</ol>

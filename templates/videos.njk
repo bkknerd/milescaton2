@@ -9,7 +9,7 @@ next: { label: "photos", url: "/photos/" }
 <div class="vwall">
   {% for v in videos.items %}
   <figure class="vt fade{% if v.wide %} wide{% endif %}">
-    <div class="vt-scr">
+    <div class="vt-scr" data-chalk="frame" data-direct>
       {% if v.youtube or v.playlist %}
       <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/{% if v.youtube %}{{ v.youtube }}?{% else %}videoseries?list={{ v.playlist }}&amp;{% endif %}rel=0&amp;playsinline=1&amp;modestbranding=1" title="{{ v.title }} on YouTube" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
       {% else %}

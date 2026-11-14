@@ -8,7 +8,7 @@ next: { label: "honors", url: "/honors/" }
 {% set heading = "dates" %}{% set subL = dates.sub_left %}{% set subR = dates.sub_right %}{% include "partials/pagehead.njk" %}
 <section class="up grid" aria-label="Upcoming">
   <div class="up-a">
-    <h2 class="hub-h">upcoming</h2>
+    <h2 class="hub-h" data-chalk="circle">upcoming</h2>
     {% if dates.upcoming.length %}
     <ul class="dl up-list">{% for d in dates.upcoming %}<li><span class="d"><b>{{ d.display }}</b>{{ d | pressYear }}</span><span class="w">{{ d.kind }}</span><span class="t">{{ d.title | mdi | safe }}<small>{{ d.note | mdi | safe }}</small></span>{% if d.link %}<a class="lk e" href="{{ d.link }}">{{ d.link_label }}</a>{% endif %}</li>{% endfor %}</ul>
     {% else %}

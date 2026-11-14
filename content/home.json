@@ -1,13 +1,7 @@
 {
   "hero": {
-    "photo": "/assets/hero-tv.jpg",
     "tl": "singer and actor, brooklyn ny",
-    "bl": "city of noise",
-    "br_label": "",
-    "br_url": "",
-    "play_label": "",
-    "play_youtube": "",
-    "play_title": ""
+    "bl": "city of noise"
   },
   "release": {
     "kicker": "new single, out now",
@@ -138,77 +132,5 @@
         "url": "https://www.imdb.com/name/nm10416836/"
       }
     ]
-  },
-  "channels": [
-    {
-      "title": "Miles Caton",
-      "year": "",
-      "line": "",
-      "photo": "/assets/hero-tv.jpg",
-      "link_label": "",
-      "link_url": "",
-      "youtube": "",
-      "play_label": ""
-    },
-    {
-      "title": "Little Big Shots",
-      "year": "2018",
-      "line": "Thirteen years old on NBC, singing “For Every Mountain” on the season three premiere.",
-      "photo": "",
-      "link_label": "His story",
-      "link_url": "/story/",
-      "youtube": "oi_d-So-__c",
-      "play_label": "Play the performance"
-    },
-    {
-      "title": "The View",
-      "year": "2019",
-      "line": "“Never Give Up,” live with Yolanda Adams for Martin Luther King Jr. Day.",
-      "photo": "",
-      "link_label": "His story",
-      "link_url": "/story/",
-      "youtube": "BKyjbzun9KM",
-      "play_label": "Play the performance"
-    },
-    {
-      "title": "Sinners",
-      "year": "2025",
-      "line": "His first film role: Sammie Moore, opposite Michael B. Jordan, in Ryan Coogler’s film.",
-      "photo": "/img/hero-red.jpg",
-      "link_label": "About the film",
-      "link_url": "/sinners/",
-      "youtube": "S7jo5Cr6WUA",
-      "play_label": "Play the scene"
-    },
-    {
-      "title": "American Cinematheque Awards",
-      "year": "2025",
-      "line": "“I Lied to You” live with Ludwig Göransson and Raphael Saadiq, honoring Michael B. Jordan.",
-      "photo": "",
-      "link_label": "",
-      "link_url": "",
-      "youtube": "9ieLFgcnuVc",
-      "play_label": "Play the performance"
-    },
-    {
-      "title": "The Oscars",
-      "year": "2026",
-      "line": "“I Lied to You,” live with Raphael Saadiq at the 98th Academy Awards.",
-      "photo": "",
-      "link_label": "Read about it on Essence",
-      "link_url": "https://www.essence.com/awards-events/miles-caton-2026-oscars-performance/",
-      "youtube": "",
-      "play_label": ""
-    },
-    {
-      "title": "Lean On",
-      "year": "2026",
-      "line": "Out now on Columbia Records.",
-      "photo": "",
-      "link_label": "",
-      "link_url": "",
-      "youtube": "TPvGrWa3iWA",
-      "play_label": "Play the video"
-    }
-  ]
+  }
 }

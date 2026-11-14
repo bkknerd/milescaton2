@@ -9,26 +9,40 @@ next: { label: "story", url: "/story/" }
 <div class="wall">
   {% for w in fans.wall %}
   {% if w.link %}<a class="card" href="{{ w.link }}" rel="nofollow noopener" data-cur="open">{% else %}<div class="card">{% endif %}
-    <span class="k">{{ w.kind }}</span><p>{{ w.note }}</p><span class="by">{{ w.name }}</span>
+    {% if w.drawing %}<img src="{{ w.drawing }}" alt="Chalk drawing by {{ w.name }}" loading="lazy">{% else %}<span class="k">{{ w.kind }}</span>{% endif %}{% if w.note %}<p>{{ w.note }}</p>{% endif %}<span class="by">{{ w.name }}</span>
   {% if w.link %}</a>{% else %}</div>{% endif %}
   {% else %}
   <p class="wall-empty mute">{{ fans.empty }}</p>
   {% endfor %}
 </div>
+<section class="pad-wrap" aria-labelledby="padH">
+  <h2 class="hub-h" id="padH">{{ fans.pad_heading }}</h2>
+  <div class="pad-board" id="padBoard" data-chalk="frame">
+    <canvas id="pad" width="900" height="600" role="img" aria-label="Drawing board. Draw with a mouse or finger."></canvas>
+    <p class="pad-hint">{{ fans.pad_hint }}</p>
+  </div>
+  <div class="pad-tools" role="group" aria-label="Chalk">
+    <button type="button" data-chalk-color="#EFE7D3" aria-pressed="true">white chalk</button>
+    <button type="button" class="sw-y" data-chalk-color="#F3D36B" aria-pressed="false">yellow chalk</button>
+    <button type="button" id="padUndo">undo</button>
+    <button type="button" id="padClear">wipe the board</button>
+  </div>
+</section>
 <section class="send grid" aria-labelledby="sendH">
   <div class="send-a">
     <h2 class="hub-h" id="sendH">{{ fans.form_heading }}</h2>
     <p class="send-t">{{ fans.form_text }}</p>
     <ul class="send-rules mute">{% for r in fans.rules %}<li>{{ r }}</li>{% endfor %}</ul>
   </div>
-  <form class="form send-b" name="fan-submission" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-thanks="{{ fans.thanks }}">
+  <form class="form send-b" id="fanForm" name="fan-submission" method="POST" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field" data-thanks="{{ fans.thanks }}">
     <input type="hidden" name="form-name" value="fan-submission">
     <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
     <label>Your name or handle<input name="name" required maxlength="60" autocomplete="nickname"></label>
     <label>What is it?
-      <select name="kind" required><option value="">Choose one</option>{% for k in fans.kinds %}<option>{{ k }}</option>{% endfor %}</select>
+      <select name="kind" required><option value="">Choose one</option><option>Chalk drawing</option>{% for k in fans.kinds %}<option>{{ k }}</option>{% endfor %}</select>
     </label>
-    <label>Link<input name="link" type="url" placeholder="https://" maxlength="300"></label>
+    <input type="file" name="drawing" accept="image/png" hidden>
+    <label>Link (optional)<input name="link" type="url" placeholder="https://" maxlength="300"></label>
     <label>A few words<textarea name="note" rows="3" maxlength="400"></textarea></label>
     <label class="chk"><input type="checkbox" name="permission" value="yes" required> I made this or have permission to share it.</label>
     <button type="submit" class="btn">Send for review</button>

@@ -3,37 +3,16 @@ layout: layouts/base.njk
 pageKey: home
 ---
 {%- set h = home.hero %}
-<div class="static" id="static" data-photo="{{ h.photo }}" data-ch="1">
-  <canvas id="tv" aria-hidden="true"></canvas>
-  <h1 class="sig-hero"{% if site.logo %} style="--sig:url('{{ site.logo }}')"{% endif %}><span class="vh">{{ site.name }}</span></h1>
-  {%- for c in home.channels %}{% if not loop.first %}
-  <div class="ch-card" data-n="{{ loop.index }}" aria-hidden="true">
-    {% if c.year %}<span class="ch-year">{{ c.year }}</span>{% endif %}
-    <p class="ch-title{% if c.title | length > 16 %} long{% endif %}">{{ c.title | mdi | safe }}</p>
-    {% if c.line %}<p class="ch-line">{{ c.line | mdi | safe }}</p>{% endif %}
-    <p class="ch-links">{% if c.youtube %}<a class="ch-link" href="https://www.youtube.com/watch?v={{ c.youtube }}" data-yt="{{ c.youtube }}" data-title="{{ c.title }}" data-cur="play" tabindex="-1">{{ c.play_label or "Play" }}</a>{% endif %}{% if c.link_url %}<a class="ch-link alt" href="{{ c.link_url }}"{% if c.link_url.startsWith("http") %} target="_blank" rel="noopener"{% endif %} data-cur="open" tabindex="-1">{{ c.link_label }}</a>{% endif %}</p>
-  </div>
-  {%- endif %}{% endfor %}
-  <p class="osd" id="osd" aria-hidden="true">CH <b id="osdN">01</b></p>
-  <p class="corner tl">{{ h.tl }}</p>
-  {% if h.play_youtube %}<a class="corner tr" href="https://www.youtube.com/watch?v={{ h.play_youtube }}" data-yt="{{ h.play_youtube }}" data-title="{{ h.play_title }}" data-cur="play">{{ h.play_label }}</a>{% endif %}
-  <p class="corner bl">{{ h.bl }}</p>
-  {% if h.br_label %}<a class="corner br" href="{{ h.br_url }}">{{ h.br_label }}</a>{% endif %}
-  {% if home.channels.length > 1 %}
-  <div class="dial" role="group" aria-label="Change channel">
-    <button type="button" class="dial-b ch-prev" id="chPrev" aria-label="Previous channel"><i aria-hidden="true"></i></button>
-    <span class="dial-n" id="chLabel" aria-live="polite">CH 01 <span class="mute">/ {{ "0" if home.channels.length < 10 }}{{ home.channels.length }}</span></span>
-    <button type="button" class="dial-b ch-next" id="chNext" aria-label="Next channel"><i aria-hidden="true"></i></button>
-  </div>
-  <script type="application/json" id="chData">{{ home.channels | dump | safe }}</script>
-  {% endif %}
-  <div class="crt" aria-hidden="true"></div>
+<div class="board-hero">
+  <h1 class="sig-write"{% if site.logo %} style="--sig:url('{{ site.logo }}')"{% endif %}><span class="vh">{{ site.name }}</span><span class="sw a" aria-hidden="true"><i></i></span><span class="sw b" aria-hidden="true"><i></i></span><span class="chalk-start" data-chalk="start"></span></h1>
+  <p class="corner tl hand">{{ h.tl }}</p>
+  <p class="corner bl hand">{{ h.bl }}</p>
 </div>
 
 {%- set r = home.release %}
 <section class="release grid" aria-labelledby="rel">
   <p class="kick">{{ r.kicker }}</p>
-  <h2 class="rel" id="rel"><span class="m">{{ r.title }}</span><span class="g g1" aria-hidden="true">{{ r.title }}</span><span class="g g2" aria-hidden="true">{{ r.title }}</span></h2>
+  <h2 class="rel chalked" id="rel" data-chalk="under2">{{ r.title }}</h2>
   <dl class="fade">{% for f in r.facts %}<dt>{{ f.label }}</dt><dd>{{ f.value | mdi | safe }}</dd>{% endfor %}</dl>
   <div class="acts fade">
     {% if r.youtube %}<a class="lk" href="https://www.youtube.com/watch?v={{ r.youtube }}" data-yt="{{ r.youtube }}" data-title="{{ r.title | title }}" data-cur="play">Play the video</a>{% endif %}
@@ -43,7 +22,7 @@ pageKey: home
 
 <section class="hub" aria-label="Listen and follow">
   <div class="hub-col">
-    <h2 class="hub-h">listen</h2>
+    <h2 class="hub-h" data-chalk="circle">listen</h2>
     {% for l in site.listen %}<a class="hub-a" href="{{ l.url }}" data-cur="listen"><b>{{ l.label }}</b><span>{{ l.note }}</span></a>{% endfor %}
   </div>
   <div class="hub-col">
@@ -56,19 +35,19 @@ pageKey: home
 <section class="strip-ph" aria-labelledby="stripH">
   <div class="strip-head"><h2 class="hub-h" id="stripH">{{ home.strip.label }}</h2><a class="lk" href="/photos/">{{ home.strip.link_label }}</a></div>
   <div class="strip-row">
-    {% for p in home.strip.photos %}<a href="/photos/" data-cur="view">{% img p.src, p.alt, "", "(max-width: 900px) 60vw, 22vw" %}</a>{% endfor %}
+    {% for p in home.strip.photos %}<a href="/photos/" data-chalk="frame">{% img p.src, p.alt, "", "(max-width: 900px) 60vw, 22vw" %}</a>{% endfor %}
   </div>
 </section>
 
 <section class="bio grid" aria-label="About Miles">
   <p class="rv">{{ b.text }}</p>
-  <a class="more lk fade" href="/story/">His story, year by year</a>
-  {% if b.photo %}<figure class="bio-ph fade">{% img b.photo, b.photo_alt, "", "(max-width: 900px) 90vw, 30vw" %}</figure>{% endif %}
+  <a class="more" href="/story/">His story, year by year</a>
+  {% if b.photo %}<figure class="bio-ph" data-chalk="frame" data-gutter="r">{% img b.photo, b.photo_alt, "", "(max-width: 900px) 90vw, 30vw" %}</figure>{% endif %}
 </section>
 
 {%- set n = home.noise %}
 <section class="con grid" aria-labelledby="conH">
-  <h2 class="con-h rv" id="conH"><span class="mk" aria-hidden="true">M</span>{{ n.heading }}</h2>
+  <h2 class="con-h chalked" id="conH" data-chalk="circle" data-gutter="r">{{ n.heading }}</h2>
   <p class="con-t fade">{{ n.text | mdi | safe }}</p>
   <a class="con-l lk fade" href="{{ n.link_url }}">{{ n.link_label }}</a>
 </section>
@@ -84,5 +63,6 @@ pageKey: home
   <div class="txt">
     <p class="rv">{{ home.signoff.text }}</p>
     <div class="links fade">{% for l in home.signoff.links %}<a class="lk" href="{{ l.url }}">{{ l.label }}</a>{% endfor %}</div>
+    <span class="chalk-end" data-chalk="end" data-gutter="r" aria-hidden="true"></span>
   </div>
 </section>
