@@ -6,10 +6,14 @@ pageKey: videos
 next: { label: "photos", url: "/photos/" }
 ---
 {% set heading = "videos" %}{% set subL = videos.sub_left %}{% set subR = (videos.items.length + " videos") %}{% include "partials/pagehead.njk" %}
+<nav class="setlist" aria-label="Videos on this page">
+  <p class="hub-h">on this page</p>
+  <ul>{% for v in videos.items %}<li><a href="#v{{ loop.index }}"><span>{{ v.title }}</span><small>{{ v.kind }}</small></a></li>{% endfor %}</ul>
+</nav>
 <div class="vwall">
   {% for v in videos.items %}
-  <figure class="vt fade{% if v.wide %} wide{% endif %}">
-    <div class="vt-scr" data-chalk="frame" data-direct>
+  <figure class="vt fade{% if v.wide %} wide{% endif %}" id="v{{ loop.index }}">
+    <div class="vt-scr" data-chalk="frame">
       {% if v.youtube or v.playlist %}
       <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/{% if v.youtube %}{{ v.youtube }}?{% else %}videoseries?list={{ v.playlist }}&amp;{% endif %}rel=0&amp;playsinline=1&amp;modestbranding=1" title="{{ v.title }} on YouTube" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
       {% else %}

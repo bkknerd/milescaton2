@@ -69,7 +69,7 @@
       const kf = (y) => Math.min(y, key);
       if (!cur) { penUp = true; put(T.x, T.y, key); return; }
       const dx = T.x - cur.x, dy = T.y - cur.y;
-      if ((direct && !(W < 700 && dy > 150)) || Math.abs(dy) < 120) {
+      if ((direct && !(W < 900 && dy > 150)) || Math.abs(dy) < 120) {
         const sag = Math.abs(dy) < 60 ? 24 : 0;
         bez({ x: cur.x + dx * .25, y: cur.y + dy * .6 + sag }, { x: T.x - dx * .25, y: T.y - dy * .6 + sag }, T, kf);
         return;
@@ -90,6 +90,10 @@
       const key = type === 'start' ? -1e8 : r.t + Math.min(r.h * .5, 160);
       const K = () => key, rnd = rng(idx * 7919 + 13);
       mk = idx + 1; el._mk = mk;
+      // a mark on its own: lift the chalk, draw it, then carry the long line on from where it was
+      const solo = el.hasAttribute('data-solo'), hold = cur;
+      if (solo) cur = null;
+      try {
       if (type === 'start') {
         // leave the last letter of the signature and sweep back under the whole name
         const h = el.parentElement.getBoundingClientRect(), hb = h.bottom + sy;
@@ -102,8 +106,8 @@
         const y = r.b + Math.max(7, Math.min(12, r.h * .06));
         travel({ x: r.l - 6, y: y + 3 }, key, direct, side);
         bez({ x: r.l + r.w * .3, y: y - 3 }, { x: r.l + r.w * .7, y: y + 4 }, { x: r.r + 12, y: y - 2 }, K);
-        if (type === 'under2' && W >= 700) {
-          const y2 = y + Math.max(10, Math.min(22, r.h * .07));
+        if (type === 'under2') {
+          const y2 = y + (W < 700 ? 7 : Math.max(10, Math.min(22, r.h * .07)));
           bez({ x: r.r + 26, y: y + 2 }, { x: r.r + 20, y: y2 }, { x: r.r - 10, y: y2 }, K);
           bez({ x: r.l + r.w * .7, y: y2 + 3 }, { x: r.l + r.w * .4, y: y2 - 3 }, { x: r.l - 4, y: y2 + 3 }, K);
         }
@@ -159,12 +163,22 @@
         cur = hold; penUp = !hold; if (hold) { penUp = true; put(hold.x, hold.y, key); }
         return;
       }
+      if (type === 'strike') {
+        const hold = cur, y = (r.t + r.b) / 2;
+        penUp = true; put(r.l - 7, y + 2 + rnd() * 5, key);
+        line({ x: r.r + 9, y: y - 5 + rnd() * 5 }, K);
+        cur = hold; penUp = !hold; if (hold) { penUp = true; put(hold.x, hold.y, key); }
+        return;
+      }
       if (type === 'end') {
         const y0 = r.t + r.h * .92, x0 = r.l, loops = 3, a = Math.min(28, r.w / 12), bb = a * 1.9;
         travel({ x: x0, y: y0 }, key, direct, side);
         const n = Math.ceil(loops * 2 * Math.PI * bb * 1.6 / STEP);
         for (let i = 1; i <= n; i++) { const t = i / n * loops * 2 * Math.PI; put(x0 + a * t - bb * Math.sin(t), y0 - bb * (1 - Math.cos(t)) * .8, key); }
         bez({ x: cur.x + 40, y: y0 + 4 }, { x: cur.x + 110, y: y0 - 14 }, { x: Math.min(r.r, cur.x + 190), y: y0 - 4 }, K);
+      }
+      } finally {
+        if (solo) { cur = hold; penUp = !hold; if (hold) { penUp = true; put(hold.x, hold.y, key); } }
       }
     });
 
@@ -252,7 +266,7 @@
   addEventListener('load', rebuild);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(rebuild);
   // on the home page the line waits for the signature to finish writing
-  setTimeout(() => { armed = true; kick(); }, reduce ? 0 : ($('.sig-write') && scrollY < 40 ? 2050 : 350));
+  setTimeout(() => { armed = true; kick(); }, reduce ? 0 : ($('.sig-write') && scrollY < 40 ? 2200 : 350));
 
   // a plucked line: the music page waves shake when you point at them
   const pluckEl = (el, hold) => { if (el && el._mk && !reduce) { pluck = { m: el._mk, a: hold ? .2 : 1, hold: !!hold }; kick(); } };

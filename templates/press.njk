@@ -11,7 +11,7 @@ next: { label: "fans", url: "/fans/" }
 <section class="cover grid" aria-label="Cover story">
   <figure class="cover-ph" data-chalk="frame">{% img c.image, c.image_alt, "", "(max-width: 900px) 58vw, 32vw" %}</figure>
   <div class="cover-t fade"><p class="hub-h">{{ c.label }}</p><h2 class="cover-h">{{ c.title | mdi | safe }}</h2><p class="mute">{{ c.text | mdi | safe }}</p></div>
-  {% if c.image2 %}<figure class="cover-ph2" data-chalk="frame" data-direct>{% img c.image2, c.image2_alt, "", "(max-width: 900px) 40vw, 24vw" %}</figure>{% endif %}
+  {% if c.image2 %}<figure class="cover-ph2">{% img c.image2, c.image2_alt, "", "(max-width: 900px) 40vw, 24vw" %}</figure>{% endif %}
 </section>
 {% endif %}
 <div class="filters" role="group" aria-label="Filter press">
@@ -23,7 +23,7 @@ next: { label: "fans", url: "/fans/" }
   {%- for it in sorted %}
   {%- set y = it | pressYear %}
   {%- if loop.first or (sorted[loop.index0 - 1] | pressYear) != y %}
-  <li class="yr-h" data-yr>{{ y }}</li>
+  <li class="yr-h" data-yr><span data-chalk="circle" data-direct>{{ y }}</span></li>
   {%- endif %}
   <li data-k="{{ it.kind }}"><a href="{{ it.url }}"><span class="d">{{ it | pressDate }}</span><span class="o">{{ it.outlet }}</span><span class="h">{{ it.title | mdi | safe }}</span><span class="k">{{ it.kind }}</span></a></li>
   {%- endfor %}
